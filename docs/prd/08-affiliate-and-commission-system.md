@@ -404,3 +404,12 @@ Net settled 9,764.00 = Tax Payable net (1,525.42 − 36.00 ITC = 1,489.42)
 - Charter: `frenchies-prd-charter.md` §7.5 (hierarchy split), §7.6 (separate affiliate pool), §7.7 (clawback), §7.10 (idempotency).
 - Owning FR prefixes: `FR-COMMISSION-001…030`, `FR-AFFILIATE-001…030`.
 - Ledger postings, payout flow, and the no-affiliate numeric baseline: `07-billing-and-financial-architecture.md` (§5.2, §5.5, §7).
+
+## Ratified P0 decisions (2026-11-20)
+
+Decisions below are ratified in `22-open-questions-and-assumptions.md` §5; see that
+section for ratifier, date and launch-gate caveats.
+
+| OQ-007 | 7-day default hold; `hold_days >= refund_window_days`; fulfillment-gated release unchanged. |
+| OQ-010 | Chargebacks: claw back amount + fee from the selling reseller wallet as negative ledger lines; evidence pack manual in MVP. |
+| OQ-013 | Depth 1–3 split 50/30/20 of pool, single-level = 100% to seller; deeper ancestors 0% by default; configurable split table. |

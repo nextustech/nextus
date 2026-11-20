@@ -636,3 +636,15 @@ J7  Dr Reseller Payable C · available   847.46   (- wallet refund_clawback)
 - Owning FR prefixes: `FR-BILLING-001…032`, `FR-PAYMENT-001…031`, `FR-WALLET-001…031`.
 - Cross-document: commission rules/attribution → `08-affiliate-and-commission-system.md`; fulfillment gating of commission release → `09-fulfillment-and-licensing.md`; schema/columns → `13-database-design.md`; payment security/PCI scope → `17-security-requirements.md`.
 
+## Ratified P0 decisions (2026-11-20)
+
+Decisions below are ratified in `22-open-questions-and-assumptions.md` §5; see that
+section for ratifier, date and launch-gate caveats.
+
+| OQ-001 | Platform-fee mechanism: `platform_settings` fee value default 0%, dedicated ledger revenue leg, pricing reads the setting; business model chosen before GA. |
+| OQ-007 | Default commission hold 7 days, `hold_days >= refund_window_days` per product type; subscription first-cycle hold past refund window. |
+| OQ-008 | Minimum payout ₹1,000 (configurable), bank transfer + UPI; platform absorbs standard fees < ₹10,000, passes through above; policy in `platform_settings`. |
+| OQ-010 | Chargeback liability on the selling reseller: amount + fee clawed back as negative ledger lines; platform pre-approves high-risk categories; manual evidence pack in MVP. |
+| OQ-013 | Hierarchy split defaults depths 1–3 = 50/30/20, deeper 0%; arbitrary-depth split table in `platform_settings`. |
+| OQ-014 | Refund windows by product type (7d digital, 14d services, 7d renewal, 7d license, strictest for packages) drive clawback timing. |
+| OQ-028 | Legal wording in invoices and receipts comes from platform-owned, jurisdiction-parameterized templates; reseller supplies identity fields only. |

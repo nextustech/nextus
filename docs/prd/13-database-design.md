@@ -1160,3 +1160,15 @@ form_submit. · *Class:* tenant-owned · *Soft delete:* no · *Vol:* XL (partiti
 **Soft delete:** no; aggregates per demo maintained by hourly rollup job.
 
 <!-- SECTION-4-CONTINUES -->
+
+## Ratified P0 decisions (2026-11-20)
+
+Decisions below are ratified in `22-open-questions-and-assumptions.md` §5; see that
+section for ratifier, date and launch-gate caveats.
+
+| OQ-001 | `platform_settings`: platform fee value (default 0%); dedicated platform revenue leg in `journal_lines`. |
+| OQ-007 | Commission `hold_days` configurable, constrained `>= refund_window_days` per product type. |
+| OQ-008 | Payout minimum and fee policy in `platform_settings`; `payouts` records bank/UPI method and fee absorption. |
+| OQ-013 | Split table supports arbitrary depth; default rows for depths 1–3 (50/30/20), deeper default 0%. |
+| OQ-020 | `tenant_domains` retains verification state, token and SSL sub-state; provider-agnostic. |
+| OQ-027 | KYC artifact fields per tenant with restricted access and audit views. |

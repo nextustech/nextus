@@ -219,3 +219,14 @@ test gates in `19-testing-and-quality-assurance.md`.
    server-side enforcement remain P0.
 4. MFA recovery, impersonation expiry and privileged role assignment remain
    double-attributed and auditable.
+
+## Ratified P0 decisions (2026-11-20)
+
+Decisions below are ratified in `22-open-questions-and-assumptions.md` §5; see that
+section for ratifier, date and launch-gate caveats.
+
+| OQ-010 | Chargeback evidence pack, pass-through fee and negative ledger clawback are in scope; track chargeback rate weekly. |
+| OQ-027 | KYC artifacts restricted to Platform/Finance Admin; every view audit-logged. |
+| OQ-028 | Legal disclosure text is platform-owned, versioned and non-editable by tenants. |
+| OQ-029 | DPDP roles: reseller fiduciary / platform processor for reseller customer data; platform DPA at approval; consent notices and breach playbook. Counsel confirm before GA. |
+| OQ-031 | AUP enumeration, risk-based pre-moderation, enforcement ladder with reason codes, audit logging and abuse-report channel. |

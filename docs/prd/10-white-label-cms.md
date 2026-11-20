@@ -546,3 +546,14 @@ And the invoice settings UI labels these footer elements as non-removable (legal
 - Theme state: `active` theme per tenant + staged draft (not a persisted status; staged
   values live in an editor session until Publish).
 - Demo tokens (`/d/` routes): states owned by `06-product-marketplace.md` Section 10.
+
+## Ratified P0 decisions (2026-11-20)
+
+Decisions below are ratified in `22-open-questions-and-assumptions.md` §5; see that
+section for ratifier, date and launch-gate caveats.
+
+| OQ-014 | Auto-render refund policy per product type on storefront footer and invoice from the ratified window table. |
+| OQ-020 | Custom-domain flow: CNAME + HTTP token verification + Cloudflare proxied edge SSL; assisted nameserver transfer upgrade. |
+| OQ-028 | Legal/disclosure wording is platform-owned, jurisdiction-parameterized and non-editable by resellers; reseller identity in defined slots. |
+| OQ-029 | Consent notices rendered per tenant branding; data-principal requests routed to owning tenant; platform executes technically. |
+| OQ-031 | Publish abuse-report channel in footer; automated content flags and enforcement ladder apply to new storefronts. |

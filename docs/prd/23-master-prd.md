@@ -297,9 +297,27 @@ The decision log is intentionally not duplicated here. It is owned by
 4. P1 decisions block MVP GA.
 5. P2/P3 decisions block only the dependent feature or rollout.
 
-Current high-impact P0 decisions include platform fee/revenue model, payout and
-commission rules, refund policy, custom-domain technology, KYC, legal branding,
-DPDP mapping and anti-abuse controls.
+All 12 high-impact P0 decisions were ratified on 2026-11-20 by the product owner and
+are now `Closed` in `22-open-questions-and-assumptions.md` §5. Full decisions, ratifiers,
+dates and affected documents live there; the summary below is for traceability only.
+
+| OQ | Ratified decision (summary) | Gate retained |
+|---|---|---|
+| OQ-001 | Fee mechanism in `platform_settings`, default 0%, dedicated ledger leg | Model (a)/(b) before GA |
+| OQ-002 | Three paid tiers + annual option, seeded `subscription_plans`, no free tier | Exact INR prices from beta interviews |
+| OQ-007 | 7-day hold; `hold_days >= refund_window_days`; fulfillment gating unchanged | — |
+| OQ-008 | Min payout ₹1,000; bank + UPI; fee policy in `platform_settings` | — |
+| OQ-010 | Selling reseller liable; chargeback + fee clawed back; manual evidence pack | — |
+| OQ-013 | Depths 1–3 = 50/30/20; deeper 0% default; configurable table | Percentages confirmed before GA |
+| OQ-014 | Per-type refund windows with per-product override | — |
+| OQ-020 | CNAME + HTTP token + Cloudflare proxied edge SSL; assisted nameserver upgrade | — |
+| OQ-027 | Standard KYC for go-live; minimal = create-only; strict for high-risk | Counsel confirmation before GA |
+| OQ-028 | Platform-owned jurisdiction wording templates; reseller identity slots only | Counsel review before GA |
+| OQ-029 | Reseller fiduciary / platform processor split; platform DPA at approval | Counsel confirmation before GA |
+| OQ-031 | Enumerated prohibited categories, risk-based pre-moderation, audit-ladder | Counsel review before GA |
+
+OQ-022 (tenancy layer) and OQ-026 (Redis topology) remain Open and are gated by Sprint 0
+spike results; see `docs/spikes/oq-022-tenancy-spike.md`.
 
 ## 13. Traceability
 

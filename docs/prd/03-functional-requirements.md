@@ -2134,3 +2134,12 @@ lead). Numbered A1–A16 are referenced inline in the FR statements above.
 | Campaign (Module 21) | draft, scheduled, running, paused, completed | FR-MARKETING-009 |
 
 *End of document — `03-functional-requirements.md` v1.0 (Draft for Review).*
+
+## Ratified P0 decisions (2026-11-20)
+
+Decisions below are ratified in `22-open-questions-and-assumptions.md` §5; see that
+section for ratifier, date and launch-gate caveats.
+
+| OQ-002 | Three paid tiers + annual option; no free tier in MVP; prices seeded in `subscription_plans`, not hard-coded (exact INR before GA). |
+| OQ-027 | Standard KYC is the go-live gate; minimal KYC permits tenant creation only; strict KYC for high-risk categories. |
+| OQ-031 | AUP prohibited-category list and enforcement ladder are part of onboarding acceptance; reason codes and audit mandatory. |

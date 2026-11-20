@@ -585,4 +585,9 @@ authoritative for numbering and wording.
   `reseller_hierarchy`.
 - `17-security-requirements.md` — retention windows, impersonation/audit policy, PII opt-in.
 
+## Ratified P0 decisions (2026-11-20)
 
+Decisions below are ratified in `22-open-questions-and-assumptions.md` §5; see that
+section for ratifier, date and launch-gate caveats.
+
+| OQ-013 | Default commission participation covers depths 1–3 at 50/30/20 of the pool (single-level sale = 100% to seller); deeper ancestors are recorded but earn 0% by default. Split table is configurable to arbitrary depth without code changes; percentages confirmed before GA. |

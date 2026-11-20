@@ -899,3 +899,12 @@ after MVP gate approval.
 This workflow document does not close master OQs. It records the impact and uses the
 explicitly stated working assumptions until decisions are documented in
 `22-open-questions-and-assumptions.md`.
+
+## Ratified P0 decisions (2026-11-20)
+
+Decisions below are ratified in `22-open-questions-and-assumptions.md` §5; see that
+section for ratifier, date and launch-gate caveats.
+
+| OQ-027 | Onboarding: standard KYC is the go-live gate; minimal KYC allows tenant creation but not publication or payouts; strict KYC for high-risk. |
+| OQ-029 | Reseller approval includes platform DPA acceptance (timestamped checkbox); consent notices per tenant; breach playbook routed to owning tenant. |
+| OQ-031 | Suspension follows warning → publication restriction → suspension → termination with payout hold; reason codes and audit on every action. |

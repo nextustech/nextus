@@ -63,37 +63,37 @@ stateDiagram-v2
 
 | ID | Title | Category | Priority | Owner / decision-maker | Status |
 |---|---|---|---|---|---|
-| OQ-001 | Platform fee / revenue model on reseller-sold orders | Business model | P0 | Super Admin (platform owner) + Finance Admin | Open |
-| OQ-002 | Reseller subscription plan tiers and pricing | Business model | P0 | Super Admin | Open |
+| OQ-001 | Platform fee / revenue model on reseller-sold orders | Business model | P0 | Super Admin (platform owner) + Finance Admin | Closed |
+| OQ-002 | Reseller subscription plan tiers and pricing | Business model | P0 | Super Admin | Closed |
 | OQ-003 | Free-trial policy for reseller subscriptions | Business model | P1 | Super Admin + Platform Admin | Open |
 | OQ-004 | Multi-currency and international expansion timeline | Business model | P2 | Super Admin | Open |
 | OQ-005 | Launch cohort shape and pricing grandfathering | Business model | P1 | Super Admin | Open |
 | OQ-006 | AI usage-based billing model and markup | Business model | P2 | Super Admin + Product Manager | Open |
-| OQ-007 | Default commission-hold period and refund-window coupling | Finance | P0 | Finance Admin + Super Admin | Open |
-| OQ-008 | Minimum payout thresholds and payout methods | Finance | P0 | Finance Admin | Open |
+| OQ-007 | Default commission-hold period and refund-window coupling | Finance | P0 | Finance Admin + Super Admin | Closed |
+| OQ-008 | Minimum payout thresholds and payout methods | Finance | P0 | Finance Admin | Closed |
 | OQ-009 | Currency rounding and minor-unit rules | Finance | P1 | Finance Admin (with CA input) | Open |
-| OQ-010 | Chargeback and dispute handling policy | Finance | P0 | Finance Admin + Super Admin | Open |
+| OQ-010 | Chargeback and dispute handling policy | Finance | P0 | Finance Admin + Super Admin | Closed |
 | OQ-011 | Gateway fee treatment and float reconciliation | Finance | P1 | Finance Admin | Open |
 | OQ-012 | Negative-balance recovery policy after refund clawback | Finance | P1 | Finance Admin + Super Admin | Open |
-| OQ-013 | Default hierarchy commission splits and participation beyond depth 3 | Finance | P0 | Super Admin + Finance Admin | Open |
-| OQ-014 | Refund policy windows per product type | Product | P0 | Super Admin + Product Manager | Open |
+| OQ-013 | Default hierarchy commission splits and participation beyond depth 3 | Finance | P0 | Super Admin + Finance Admin | Closed |
+| OQ-014 | Refund policy windows per product type | Product | P0 | Super Admin + Product Manager | Closed |
 | OQ-015 | White-label depth required in MVP | Product | P1 | Product Manager + Super Admin | Open |
 | OQ-016 | Coupon stacking and discount precedence rules | Product | P1 | Product Manager | Open |
 | OQ-017 | Product review moderation policy | Product | P2 | Product Manager + Platform Admin | Open |
 | OQ-018 | Affiliate attribution window and attribution model | Product | P1 | Product Manager + Finance Admin | Open |
 | OQ-019 | Reseller subscription entitlement matrix (feature gating per plan) | Product | P1 | Super Admin + Product Manager | Open |
-| OQ-020 | Custom-domain SSL/DNS verification provider and flow | Technical | P0 | Super Admin (platform engineering) | Open |
+| OQ-020 | Custom-domain SSL/DNS verification provider and flow | Technical | P0 | Super Admin (platform engineering) | Closed |
 | OQ-021 | Default AI provider/model policy and who pays AI tokens | Technical | P1 | Super Admin + Product Manager | Open |
 | OQ-022 | Tenancy layer: purpose-built vs stancl/tenancy evaluation | Technical | P1 | Super Admin (architecture) | Open |
 | OQ-023 | S3 storage topology (prefixes vs per-tenant buckets) | Technical | P1 | Super Admin (platform engineering) | Open |
 | OQ-024 | n8n hosting and responsibility boundary | Technical | P2 | Super Admin + Platform Admin | Open |
 | OQ-025 | Email deliverability provider and per-tenant sender strategy | Technical | P1 | Platform Admin + Super Admin | Open |
 | OQ-026 | Redis / Horizon / Reverb topology and MVP sizing | Technical | P2 | Super Admin (platform engineering) | Open |
-| OQ-027 | Reseller KYC requirements before go-live | Legal / Compliance | P0 | Super Admin via external counsel + Finance Admin | Open |
-| OQ-028 | Legal branding / white-label wording per jurisdiction | Legal / Compliance | P0 | Super Admin via external counsel | Open |
-| OQ-029 | DPDP Act role mapping and data-processing terms | Legal / Compliance | P0 | Super Admin via external counsel | Open |
+| OQ-027 | Reseller KYC requirements before go-live | Legal / Compliance | P0 | Super Admin via external counsel + Finance Admin | Closed |
+| OQ-028 | Legal branding / white-label wording per jurisdiction | Legal / Compliance | P0 | Super Admin via external counsel | Closed |
+| OQ-029 | DPDP Act role mapping and data-processing terms | Legal / Compliance | P0 | Super Admin via external counsel | Closed |
 | OQ-030 | Data-residency and cross-border transfer requirements | Legal / Compliance | P1 | Super Admin via external counsel | Open |
-| OQ-031 | Acceptable-use policy and anti-phishing enforcement specifics | Legal / Compliance | P0 | Super Admin via counsel + Platform Admin | Open |
+| OQ-031 | Acceptable-use policy and anti-phishing enforcement specifics | Legal / Compliance | P0 | Super Admin via counsel + Platform Admin | Closed |
 | OQ-032 | GST / TDS treatment of commissions, platform fees, payouts | Legal / Compliance | P1 | Finance Admin via CA/counsel | Open |
 | OQ-033 | WhatsApp Business verification and template approval process | Operations | P1 | Platform Admin | Open |
 | OQ-034 | Default support SLA targets and CSAT baseline | Operations | P1 | Support Manager + Super Admin | Open |
@@ -115,7 +115,7 @@ Status. Recommendations are PRD-team proposals, not decisions.
 |---|---|
 | Priority | P0 (blocks P&L model, pricing display, ledger revenue-leg design) |
 | Owner / decision-maker | Super Admin (platform owner) with Finance Admin input |
-| Status | Open |
+| Status | Closed |
 
 - **Context:** The charter fixes the commission machinery (pool splits, holds, clawbacks)
   but deliberately invents **no per-transaction platform cut**. Monetization currently
@@ -144,7 +144,7 @@ Status. Recommendations are PRD-team proposals, not decisions.
 |---|---|
 | Priority | P0 (blocks subscription seed data and onboarding UX) |
 | Owner / decision-maker | Super Admin |
-| Status | Open |
+| Status | Closed |
 
 - **Context:** `subscription_plans` / `subscriptions` are MVP tables; charter lists
   reseller subscription plans as a core monetization line but gives no tiers or INR prices.
@@ -247,7 +247,7 @@ Status. Recommendations are PRD-team proposals, not decisions.
 |---|---|
 | Priority | P0 (blocks commission engine defaults) |
 | Owner / decision-maker | Finance Admin with Super Admin sign-off |
-| Status | Open |
+| Status | Closed |
 
 - **Context:** Charter §7.4: commissions accrue at capture as `pending`, become
   `available` after a configurable hold (**default 7 days, tied to refund window**) and
@@ -269,7 +269,7 @@ Status. Recommendations are PRD-team proposals, not decisions.
 |---|---|
 | Priority | P0 (blocks payout request UX and Finance Admin queue) |
 | Owner / decision-maker | Finance Admin |
-| Status | Open |
+| Status | Closed |
 
 - **Context:** Charter §7.8: manual payouts with a minimum threshold and bank/UPI
   details; no numbers fixed.
@@ -311,7 +311,7 @@ Status. Recommendations are PRD-team proposals, not decisions.
 |---|---|
 | Priority | P0 (gateway onboarding questionnaire requires a stance) |
 | Owner / decision-maker | Finance Admin with Super Admin sign-off |
-| Status | Open |
+| Status | Closed |
 
 - **Context:** All money is collected centrally (A-03), so chargebacks land on the
   platform's merchant accounts even though the selling reseller caused the sale.
@@ -377,7 +377,7 @@ Status. Recommendations are PRD-team proposals, not decisions.
 |---|---|
 | Priority | P0 (blocks commission defaults and reseller pitch material) |
 | Owner / decision-maker | Super Admin with Finance Admin input |
-| Status | Open |
+| Status | Closed |
 
 - **Context:** Charter §7.5 gives the canonical **mechanism** (per-depth configurable
   splits; example: 20% total pool, 50%/30%/20% to seller C / parent B / grandparent A)
@@ -405,7 +405,7 @@ Status. Recommendations are PRD-team proposals, not decisions.
 |---|---|
 | Priority | P0 (consumer-facing policy; gates invoice/footer display) |
 | Owner / decision-maker | Super Admin with Product Manager input |
-| Status | Open |
+| Status | Closed |
 
 - **Context:** Consumer Protection e-commerce norms require a stated refund policy;
   commission hold must be ≥ refund window (OQ-007); product types in catalog: digital
@@ -531,7 +531,7 @@ Status. Recommendations are PRD-team proposals, not decisions.
 |---|---|
 | Priority | P0 (blocks custom-domain build in MVP tenancy) |
 | Owner / decision-maker | Super Admin (platform engineering) |
-| Status | Open |
+| Status | Closed |
 
 - **Context:** MVP includes "basic custom domain"; charter infra names Cloudflare (DNS +
   proxy + edge SSL) and S3-compatible storage; exact validation/issuance flow unspecified.
@@ -692,7 +692,7 @@ Status. Recommendations are PRD-team proposals, not decisions.
 |---|---|
 | Priority | P0 (onboarding flow cannot be finalized without it) |
 | Owner / decision-maker | Super Admin via external counsel, with Finance Admin input |
-| Status | Open |
+| Status | Closed |
 
 - **Context:** White-label abuse controls (doc 01 §5.5) require identity verification
   before storefront go-live; depth is undecided and interacts with payout approval
@@ -717,7 +717,7 @@ Status. Recommendations are PRD-team proposals, not decisions.
 |---|---|
 | Priority | P0 (invoice template cannot be built without wording) |
 | Owner / decision-maker | Super Admin via external counsel |
-| Status | Open |
+| Status | Closed |
 
 - **Context:** White-label must hide platform branding **except** invoice "sold by" and
   payment descriptor (A-16); grievance contact, refund-policy link, and terms links also
@@ -740,7 +740,7 @@ Status. Recommendations are PRD-team proposals, not decisions.
 |---|---|
 | Priority | P0 (consent/notice UX and DPA template blocked on it) |
 | Owner / decision-maker | Super Admin via external counsel |
-| Status | Open |
+| Status | Closed |
 
 - **Context:** Doc 01 §5.2 states the working position: selling reseller = Data
   Fiduciary for its customers; platform = Processor for reseller-owned customer data and
@@ -784,7 +784,7 @@ Status. Recommendations are PRD-team proposals, not decisions.
 |---|---|
 | Priority | P0 (AUP text is part of onboarding acceptance) |
 | Owner / decision-maker | Super Admin via counsel, with Platform Admin input |
-| Status | Open |
+| Status | Closed |
 
 - **Context:** White-label storefronts can be abused for phishing/fraud (doc 01 §5.5);
   the enumerated prohibited list, detection triggers, and enforcement ladder need to be
@@ -989,38 +989,42 @@ resolved OQ/invalidated assumption:
 
 | OQ/A ID | Decision (short) | Decided by | Date | Affected documents | Status |
 |---|---|---|---|---|---|
-| _(none yet — register opened 2026-11-01)_ | — | — | — | — | — |
+| OQ-001 | Platform-fee mechanism built now in `platform_settings` (default 0%) with a dedicated ledger revenue leg; model (a)/(b) chosen before GA; float not a revenue claim. | Product owner (Super Admin + Finance Admin) | 2026-11-20 | `07`, `13`, `20`, `23` | Closed |
+| OQ-002 | Three paid tiers + annual option (~2 months' discount); exact INR prices from beta interviews before GA, seeded in `subscription_plans`; no free tier in MVP. | Product owner (Super Admin) | 2026-11-20 | `03`, `16`, `20`, `23` | Closed |
+| OQ-007 | 7-day default hold, enforced as `hold_days >= refund_window_days` per product type; subscriptions hold first cycle past refund window; fulfillment gating unchanged. | Product owner (Finance Admin + Super Admin) | 2026-11-20 | `08`, `06`, `07`, `13`, `20` | Closed |
+| OQ-008 | Min payout ₹1,000 (configurable), bank transfer + UPI; platform absorbs standard fees < ₹10,000, passes through above; policy in `platform_settings` and surfaced pre-request. | Product owner (Finance Admin) | 2026-11-20 | `07`, `13`, `16`, `20` | Closed |
+| OQ-010 | Selling reseller liable for chargebacks: amount + fee clawed back as negative ledger lines; platform pre-approves high-risk categories; manual evidence pack in MVP. | Product owner (Finance Admin + Super Admin) | 2026-11-20 | `07`, `08`, `17`, `20` | Closed |
+| OQ-013 | Depths 1–3 default 50/30/20 of pool (single-level = 100% to seller); deeper ancestors 0% by default, recorded only; split table configurable to arbitrary depth. Percentages confirmed before GA. | Product owner (Super Admin + Finance Admin) | 2026-11-20 | `05`, `08`, `13`, `07`, `20` | Closed |
+| OQ-014 | Per-type refund windows with per-product override: digital 7d from payment, services 14d from fulfillment, subscriptions 7d from renewal charge, licenses 7d if activations < 1, packages strictest constituent. Rendered on footer + invoice. | Product owner (Super Admin + Product Manager) | 2026-11-20 | `06`, `07`, `10`, `16`, `20` | Closed |
+| OQ-020 | CNAME to platform edge + HTTP token ownership check + Cloudflare proxied edge SSL; nameserver transfer as assisted upgrade; ACME DNS-01 deferred; `tenant_domains` stays provider-agnostic. | Product owner (Super Admin / platform engineering) | 2026-11-20 | `04`, `10`, `13`, `20` | Closed |
+| OQ-027 | Standard KYC (PAN + bank proof + OTP, optional GSTIN with declaration, address, signed AUP/DPDP terms) is the go-live gate; minimal KYC allows tenant creation only; strict KYC for high-risk. Artifacts restricted and audited. | Product owner (Super Admin via counsel + Finance Admin) | 2026-11-20 | `17`, `15`, `03`, `13`, `20` | Closed |
+| OQ-028 | Jurisdiction-parameterized, platform-owned wording templates (India in MVP), non-editable by resellers; reseller identity fields in defined slots only; counsel review before GA; versioned templates. | Product owner (Super Admin via counsel) | 2026-11-20 | `10`, `07`, `16`, `20` | Closed |
+| OQ-029 | Reseller = Data Fiduciary, platform = Processor for reseller customer data and Fiduciary for platform account data; platform DPA accepted at approval; consent notices per tenant; breach playbook. Counsel confirms before GA. | Product owner (Super Admin via counsel) | 2026-11-20 | `17`, `15`, `10`, `20` | Closed |
+| OQ-031 | Enumerated prohibited categories + pre-moderation for high-risk only; KYC and automated content flags with human review when flagged; ladder warning → restriction → suspension → termination with payout hold; reason codes and audit. | Product owner (Super Admin via counsel + Platform Admin) | 2026-11-20 | `17`, `10`, `15`, `03`, `20` | Closed |
 
-### 5.1 Proposed P0 decisions — awaiting owner ratification
+> **Ratification note (2026-11-20).** All 12 P0 OQs were ratified using the §5.1 proposed
+> defaults. Per §1 rule 2 the §2 summary rows and §3 detailed entries are now `Closed`,
+> and the affected documents listed above have been updated. The following launch gates
+> are retained and are **not** reopened OQs: exact INR plan prices (OQ-002), platform-fee
+> model choice (OQ-001), commission percentages (OQ-013), and external counsel
+> confirmation of wording/role mapping (OQ-027, OQ-028, OQ-029, OQ-031).
 
-The rows below are **drafts**, not decisions. They carry the §3 recommendations forward
-as proposed defaults so owners can ratify a complete P0 slate in one review. Per §1 rule
-1, only the named owner/decision-maker may move an OQ from `Open`; therefore:
+### 5.1 Proposed P0 decisions — ratification record
 
-- All 12 OQs remain `Open` in the §2 summary and in their §3 entries.
-- No charter-fixed assumption is changed (notably A-05's 7-day hold stays the working
-  default until OQ-007 is ratified).
-- On ratification, move the row into the official table above with the actual decision
-  date, set the §2 status to `Decided`, update every listed affected document, then set
-  the status to `Closed` (§1 rule 2).
-- Proposals that say "build the mechanism, configure the value" (OQ-001, OQ-013) give
-  engineering interim guidance only: values must live in `platform_settings` or config,
-  never hard-coded. This note is not a decision and does not bypass a phase gate.
+The 12 draft proposals prepared on 2026-11-20 were ratified by the product owner on
+2026-11-20 and moved into the official decision log above. The detailed recommendation
+text in §3 remains the authoritative rationale for each decision; the §5 rows carry the
+ratified decision, ratifier, date, affected documents and final status.
 
-| OQ/A ID | Proposed decision (from §3) | Owner / ratifier | Drafted | Affected documents | Status |
-|---|---|---|---|---|---|
-| OQ-001 | Build the platform-fee mechanism now: `platform_settings` fee value default 0%, dedicated ledger revenue leg, pricing displays read the setting. Decide model (a) no per-order fee or (b) configurable % before GA. Reject settlement float as a revenue claim. | Super Admin + Finance Admin | 2026-11-20 | `07-billing-and-financial-architecture.md`, `13-database-design.md`, `20-development-roadmap.md` (Gate G6), `23-master-prd.md` | Proposed — not ratified |
-| OQ-002 | Three paid tiers (Starter / Growth / Scale) with an annual option at ~2 months' discount; exact INR prices set from beta pricing interviews before GA and seeded as `subscription_plans` rows, never hard-coded. No free tier in MVP. | Super Admin | 2026-11-20 | `03-functional-requirements.md` (FR-SUBSCRIPTION), `16-ui-ux-specification.md`, `20-development-roadmap.md`, `23-master-prd.md` | Proposed — not ratified |
-| OQ-007 | Platform default commission hold = 7 days, enforced as `hold_days >= refund_window_days` per product type; subscriptions hold the first cycle until after the refund window; fulfillment-gated release unchanged. | Finance Admin + Super Admin | 2026-11-20 | `08-affiliate-and-commission-system.md`, `06-product-marketplace.md`, `07-billing-and-financial-architecture.md`, `13-database-design.md`, `20-development-roadmap.md` (Gate G6) | Proposed — not ratified |
-| OQ-008 | Minimum payout ₹1,000 (configurable per plan later); methods bank transfer (IMPS/NEFT) + UPI; platform absorbs standard fees below ₹10,000, passes through above. Threshold and fee policy in `platform_settings`, surfaced before payout request. | Finance Admin | 2026-11-20 | `07-billing-and-financial-architecture.md`, `13-database-design.md`, `16-ui-ux-specification.md`, `20-development-roadmap.md` (before T6.5) | Proposed — not ratified |
-| OQ-010 | Selling reseller liable for chargebacks: amount + fee clawed back from wallet as negative ledger lines; platform pre-approves high-risk categories (OQ-031); manual evidence-pack workflow in MVP; revisit a reserve only if measured rate approaches 0.05%. Track M2.5 weekly. | Finance Admin + Super Admin | 2026-11-20 | `07-billing-and-financial-architecture.md`, `08-affiliate-and-commission-system.md`, `17-security-requirements.md`, `20-development-roadmap.md` (Gate G6) | Proposed — not ratified |
-| OQ-013 | Default participation covers depths 1–3 at 50/30/20 of the pool (single-level sale = 100% to seller); deeper ancestors recorded in `reseller_hierarchy` but earn 0% by default. Split table in `platform_settings` supports arbitrary depth without code change. Business owner confirms percentages before GA. | Super Admin + Finance Admin | 2026-11-20 | `05-reseller-hierarchy.md`, `08-affiliate-and-commission-system.md`, `13-database-design.md`, `07-billing-and-financial-architecture.md`, `20-development-roadmap.md` (Gate G6) | Proposed — not ratified |
-| OQ-014 | Per-type defaults with per-product override: digital goods 7 days from payment (void if fulfilled and consumed); services 14 days from fulfillment completion; subscriptions pro-rata cancel within 7 days of a renewal charge; license products 7 days if activations < 1; packages follow the strictest constituent window. Platform-configurable, auto-rendered on storefront footer and invoice. | Super Admin + Product Manager | 2026-11-20 | `06-product-marketplace.md`, `07-billing-and-financial-architecture.md`, `10-white-label-cms.md`, `16-ui-ux-specification.md`, `20-development-roadmap.md` (Gate G5) | Proposed — not ratified |
-| OQ-020 | MVP default (a): customer adds CNAME to the platform edge, HTTP token validates ownership, Cloudflare proxied edge SSL covers the hostname. Offer nameserver transfer (b) as an assisted upgrade; defer ACME DNS-01 (c). Store verification state and expiry in `tenant_domains`; keep `tenant_domains` provider-agnostic. | Super Admin (platform engineering) | 2026-11-20 | `04-multi-tenancy-architecture.md`, `10-white-label-cms.md`, `13-database-design.md`, `20-development-roadmap.md` (before T4.2) | Proposed — not ratified |
-| OQ-027 | Standard KYC (b) is the go-live gate: PAN + bank proof + phone/email OTP, GSTIN optional with declaration for unregistered sellers, business address, signed AUP/DPDP terms. Minimal (a) may create a tenant but not publish products or receive payouts. Strict (c) reserved for high-risk categories from OQ-031. KYC artifacts tenant-scoped, restricted to Platform/Finance Admin, every view audited. | Super Admin via external counsel + Finance Admin | 2026-11-20 | `17-security-requirements.md`, `15-user-workflows.md`, `03-functional-requirements.md`, `13-database-design.md`, `20-development-roadmap.md` (before T2.1 exit) | Proposed — not ratified |
-| OQ-028 | Jurisdiction-parameterized, platform-owned wording templates (India in MVP), non-editable by resellers; reseller controls identity fields (legal name, GSTIN, logo) in defined slots only. Render into invoices, storefront footer, checkout, receipt emails and support portal. Counsel review before GA; changes via template versioning. | Super Admin via external counsel | 2026-11-20 | `10-white-label-cms.md`, `07-billing-and-financial-architecture.md`, `16-ui-ux-specification.md`, `20-development-roadmap.md` | Proposed — not ratified |
-| OQ-029 | Option (a): selling reseller = Data Fiduciary for its customers; platform = Processor for reseller-owned customer data and Fiduciary for platform account data. Platform-generated DPA accepted at reseller approval (checkbox + timestamp), consent notices per-tenant branding, data-principal requests routed to owning tenant, breach playbook with notification-content generation. Counsel confirmation before GA. | Super Admin via external counsel | 2026-11-20 | `17-security-requirements.md`, `15-user-workflows.md`, `10-white-label-cms.md`, `20-development-roadmap.md` | Proposed — not ratified |
-| OQ-031 | Option (a): enumerated prohibited-category list with pre-moderation for high-risk categories only. New storefronts pass KYC (OQ-027) + automated content flags (template pages, risky keywords); human review only when flagged. Enforcement ladder warning → publication restriction → suspension → termination with payout hold; every action audit-logged with reason codes; abuse-report channel in footer. | Super Admin via counsel + Platform Admin | 2026-11-20 | `17-security-requirements.md`, `10-white-label-cms.md`, `15-user-workflows.md`, `03-functional-requirements.md`, `20-development-roadmap.md` | Proposed — not ratified |
+Retained launch gates (not reopened OQs): exact INR prices and plan seed data (OQ-002);
+platform-fee model choice with the mechanism already built at default 0% (OQ-001);
+commission percentages confirmed by the business owner (OQ-013); external counsel
+confirmation of KYC wording, legal branding, DPDP role mapping and AUP text
+(OQ-027, OQ-028, OQ-029, OQ-031).
+
+OQ-022 (tenancy layer) and OQ-026 (Redis topology) remain Open. Their Sprint 0 spike
+results are recorded in `docs/spikes/oq-022-tenancy-spike.md`; ratify them before T1.5
+and T1.8 respectively.
 
 ## 6. Assumptions & Open Questions (local)
 

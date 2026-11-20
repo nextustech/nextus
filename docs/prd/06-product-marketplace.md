@@ -754,3 +754,11 @@ Custom Software Development.
 - Demo token states: `active`, `expired`, `revoked`. Demo statuses: `active`,
   `needs_reset`, `expired`.
 - `product_reviews.status`: `pending`, `approved`, `rejected`, `flagged`.
+
+## Ratified P0 decisions (2026-11-20)
+
+Decisions below are ratified in `22-open-questions-and-assumptions.md` §5; see that
+section for ratifier, date and launch-gate caveats.
+
+| OQ-014 | Per-type refund windows with per-product override: digital goods 7d from payment (void if consumed), services 14d from fulfillment, subscriptions 7d from renewal charge, licenses 7d if activations < 1, packages strictest constituent. Display on storefront footer and invoice. |
+| OQ-007 | Commission hold must be >= the applicable refund window (`hold_days >= refund_window_days`); product-type enum drives both. |

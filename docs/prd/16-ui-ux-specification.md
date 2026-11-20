@@ -1509,3 +1509,12 @@ within the B shell (UI-B-15 note); every screen's permission mapping references
 9. **OQ:** invoice "reissue once per FY" rule in UI-B-19 — finance to confirm with
    GST counsel (`07-billing-and-financial-architecture.md` owns final rule).
 
+## Ratified P0 decisions (2026-11-20)
+
+Decisions below are ratified in `22-open-questions-and-assumptions.md` §5; see that
+section for ratifier, date and launch-gate caveats.
+
+| OQ-002 | Paywall screens reflect three paid tiers + annual option; prices read from `subscription_plans`; no free tier. |
+| OQ-008 | Payout request UI shows ₹1,000 minimum and fee-absorption policy before submission. |
+| OQ-014 | Refund-policy copy rendered from ratified per-type windows on storefront footer and invoice. |
+| OQ-028 | Legal wording slots are platform-controlled and non-editable; reseller logo/name/GSTIN inserted only in defined slots. |

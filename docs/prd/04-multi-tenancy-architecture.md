@@ -989,5 +989,9 @@ the architecture sections implementing them.
 - `17-security-requirements.md` — retention, impersonation security review, incident policy.
 - `18-non-functional-requirements.md` — RPO/RTO, latency budgets for resolution path.
 
+## Ratified P0 decisions (2026-11-20)
 
+Decisions below are ratified in `22-open-questions-and-assumptions.md` §5; see that
+section for ratifier, date and launch-gate caveats.
 
+| OQ-020 | Custom domains use CNAME to platform edge + HTTP token ownership check + Cloudflare proxied edge SSL; nameserver transfer is an assisted upgrade; ACME DNS-01 deferred. `tenant_domains` stays provider-agnostic; §8 is now the ratified flow. |
