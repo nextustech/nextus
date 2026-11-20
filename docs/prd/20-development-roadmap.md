@@ -1237,4 +1237,4 @@ Decisions below are ratified in `22-open-questions-and-assumptions.md` §5; see 
 section for ratifier, date and launch-gate caveats.
 
 All 12 P0 decision gates are closed as of 2026-11-20 (see `22-open-questions-and-assumptions.md` §5): Gate G5 (OQ-014), Gate G6 (OQ-001/007/008/010/013) and T4.2 (OQ-020) are unblocked. Ratified values are configurable defaults; launch gates listed in §5 still apply.
-OQ-022 and OQ-026 remain Open and gate T1.5 and T1.8 respectively; OQ-025 provider selection must start before Phase 2 T2.6. Sprint 0 spike results: `docs/spikes/oq-022-tenancy-spike.md`.
+OQ-022 and OQ-026 were ratified on 2026-11-20, unblocking T1.5 and T1.8; OQ-025 provider selection must start before Phase 2 T2.6. Sprint 0 spike evidence: `docs/spikes/oq-022-tenancy-spike.md`.

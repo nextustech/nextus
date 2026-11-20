@@ -84,11 +84,11 @@ stateDiagram-v2
 | OQ-019 | Reseller subscription entitlement matrix (feature gating per plan) | Product | P1 | Super Admin + Product Manager | Open |
 | OQ-020 | Custom-domain SSL/DNS verification provider and flow | Technical | P0 | Super Admin (platform engineering) | Closed |
 | OQ-021 | Default AI provider/model policy and who pays AI tokens | Technical | P1 | Super Admin + Product Manager | Open |
-| OQ-022 | Tenancy layer: purpose-built vs stancl/tenancy evaluation | Technical | P1 | Super Admin (architecture) | Open |
+| OQ-022 | Tenancy layer: purpose-built vs stancl/tenancy evaluation | Technical | P1 | Super Admin (architecture) | Closed |
 | OQ-023 | S3 storage topology (prefixes vs per-tenant buckets) | Technical | P1 | Super Admin (platform engineering) | Open |
 | OQ-024 | n8n hosting and responsibility boundary | Technical | P2 | Super Admin + Platform Admin | Open |
 | OQ-025 | Email deliverability provider and per-tenant sender strategy | Technical | P1 | Platform Admin + Super Admin | Open |
-| OQ-026 | Redis / Horizon / Reverb topology and MVP sizing | Technical | P2 | Super Admin (platform engineering) | Open |
+| OQ-026 | Redis / Horizon / Reverb topology and MVP sizing | Technical | P2 | Super Admin (platform engineering) | Closed |
 | OQ-027 | Reseller KYC requirements before go-live | Legal / Compliance | P0 | Super Admin via external counsel + Finance Admin | Closed |
 | OQ-028 | Legal branding / white-label wording per jurisdiction | Legal / Compliance | P0 | Super Admin via external counsel | Closed |
 | OQ-029 | DPDP Act role mapping and data-processing terms | Legal / Compliance | P0 | Super Admin via external counsel | Closed |
@@ -583,7 +583,7 @@ Status. Recommendations are PRD-team proposals, not decisions.
 |---|---|
 | Priority | P1 (decision required at start of Phase 1 tenancy build) |
 | Owner / decision-maker | Super Admin (architecture) |
-| Status | Open |
+| Status | Closed |
 
 - **Context:** Charter §3 recommends a purpose-built lightweight tenancy layer
   (middleware + global scopes + tenant context container) and allows stancl/tenancy to be
@@ -669,7 +669,7 @@ Status. Recommendations are PRD-team proposals, not decisions.
 |---|---|
 | Priority | P2 (tuning; topology decided at infra build) |
 | Owner / decision-maker | Super Admin (platform engineering) |
-| Status | Open |
+| Status | Closed |
 
 - **Context:** One Redis layer serves cache, queues (Horizon), and Reverb pub/sub;
   MVP scale target is ≤ 100 reseller tenants (G1).
@@ -1001,6 +1001,8 @@ resolved OQ/invalidated assumption:
 | OQ-028 | Jurisdiction-parameterized, platform-owned wording templates (India in MVP), non-editable by resellers; reseller identity fields in defined slots only; counsel review before GA; versioned templates. | Product owner (Super Admin via counsel) | 2026-11-20 | `10`, `07`, `16`, `20` | Closed |
 | OQ-029 | Reseller = Data Fiduciary, platform = Processor for reseller customer data and Fiduciary for platform account data; platform DPA accepted at approval; consent notices per tenant; breach playbook. Counsel confirms before GA. | Product owner (Super Admin via counsel) | 2026-11-20 | `17`, `15`, `10`, `20` | Closed |
 | OQ-031 | Enumerated prohibited categories + pre-moderation for high-risk only; KYC and automated content flags with human review when flagged; ladder warning → restriction → suspension → termination with payout hold; reason codes and audit. | Product owner (Super Admin via counsel + Platform Admin) | 2026-11-20 | `17`, `10`, `15`, `03`, `20` | Closed |
+| OQ-022 | Purpose-built tenancy layer: `TenantContext` + middleware + global scopes; token-first host resolution; one audited bypass helper; explicit tenant context on jobs, cache and storage. Evidence: `docs/spikes/oq-022-tenancy-spike.md`. | Product owner (Super Admin / architecture) | 2026-11-20 | `04`, `13`, `20`, `23` | Closed |
+| OQ-026 | Single managed Redis for MVP with logical key prefixes (`t:{id}:`, `g:`, `queue:`), one Horizon dashboard with `tenant:{id}` tags; split to separate instances on sustained queue-lag or Reverb connection thresholds. | Product owner (Super Admin / platform engineering) | 2026-11-20 | `18`, `20`, `23` | Closed |
 
 > **Ratification note (2026-11-20).** All 12 P0 OQs were ratified using the §5.1 proposed
 > defaults. Per §1 rule 2 the §2 summary rows and §3 detailed entries are now `Closed`,
@@ -1022,9 +1024,9 @@ commission percentages confirmed by the business owner (OQ-013); external counse
 confirmation of KYC wording, legal branding, DPDP role mapping and AUP text
 (OQ-027, OQ-028, OQ-029, OQ-031).
 
-OQ-022 (tenancy layer) and OQ-026 (Redis topology) remain Open. Their Sprint 0 spike
-results are recorded in `docs/spikes/oq-022-tenancy-spike.md`; ratify them before T1.5
-and T1.8 respectively.
+OQ-022 (tenancy layer) and OQ-026 (Redis topology) were also ratified on 2026-11-20
+using the Sprint 0 spike recommendations, and are now `Closed` in §5 above and in §2/§3.
+Evidence and implementation shape: `docs/spikes/oq-022-tenancy-spike.md`.
 
 ## 6. Assumptions & Open Questions (local)
 

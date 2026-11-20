@@ -26,15 +26,15 @@ Target per PRD: Laravel 13 / PHP 8.4, Inertia 2 + Vue 3 + TypeScript + Tailwind 
 
 | Gate | Decision | Needed before | Proposed default in `22-open-questions...` §5.1 |
 |---|---|---|---|
-| G0.1 | **OQ-022** — purpose-built tenancy vs `stancl/tenancy` | Task T1.5 | Purpose-built layer + 3-day spike validating subdomain + custom-domain resolution, global-scope coverage, cross-tenant staff access with audit |
-| G0.2 | **OQ-026** — Redis / Horizon / Reverb topology | Task T1.8 | Single managed Redis, logical separation by key prefix; split only on measured queue-lag / connection thresholds |
+| G0.1 | **OQ-022** — purpose-built tenancy vs `stancl/tenancy` | Task T1.5 | **Ratified 2026-11-20:** purpose-built layer; spike evidence in `docs/spikes/oq-022-tenancy-spike.md` |
+| G0.2 | **OQ-026** — Redis / Horizon / Reverb topology | Task T1.8 | **Ratified 2026-11-20:** single managed Redis with key prefixes; split only on measured queue-lag / connection thresholds |
 | G0.3 | **OQ-020** — custom-domain SSL/DNS flow | T1.5 must stay provider-agnostic; full build is T4.2 (Phase 4) | CNAME + HTTP token + Cloudflare proxied edge SSL |
 | G0.4 | **OQ-025** — email provider selection | Must start before Phase 2 T2.6 | Single provider, platform sending domain, per-tenant display name + Reply-To |
-| G0.5 | 12 P0 OQs ratified per §5.1 | Phase 6 Gate G6 (none block Phase 1 except OQ-020/022) | Proposed entries drafted 2026-11-20, all still `Open` pending owners |
+| G0.5 | 12 P0 OQs ratified per §5.1 | Phase 6 Gate G6 | All 12 ratified 2026-11-20; G5/G6/T4.2 unblocked |
 
 Assumptions carried into the plan: A-10 (Laravel 12→13 low effort — buffer + rollback plan required), A-11 (replace Blade scaffolding entirely), A-12 (spatie upgrade with teams), A-13 (Cloudflare), A-04 (shared-schema row isolation).
 
-**Do not start T1.5 until G0.1 is ratified and the spike report is in `22-open-questions-and-assumptions.md` §5.**
+G0.1 and G0.2 are ratified and recorded in `22-open-questions-and-assumptions.md` §5; T1.5 and T1.8 are unblocked. G0.3 keeps T1.5 provider-agnostic; G0.4 must start before Phase 2 T2.6.
 
 ## 3. Task sequence (roadmap T1.1–T1.9)
 

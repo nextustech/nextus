@@ -316,8 +316,9 @@ dates and affected documents live there; the summary below is for traceability o
 | OQ-029 | Reseller fiduciary / platform processor split; platform DPA at approval | Counsel confirmation before GA |
 | OQ-031 | Enumerated prohibited categories, risk-based pre-moderation, audit-ladder | Counsel review before GA |
 
-OQ-022 (tenancy layer) and OQ-026 (Redis topology) remain Open and are gated by Sprint 0
-spike results; see `docs/spikes/oq-022-tenancy-spike.md`.
+OQ-022 (purpose-built tenancy layer) and OQ-026 (single managed Redis with logical
+separation) were ratified on 2026-11-20 from the Sprint 0 spike; see
+`docs/spikes/oq-022-tenancy-spike.md` and `22-open-questions-and-assumptions.md` §5.
 
 ## 13. Traceability
 

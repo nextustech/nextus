@@ -4,7 +4,7 @@
 |---|---|
 | Document | oq-022-tenancy-spike.md |
 | Version | 1.0 |
-| Status | Spike report — recommendation pending owner ratification |
+| Status | Spike report — recommendations ratified 2026-11-20 |
 | Date | 2026-11-20 |
 | Question | Purpose-built tenancy layer vs `stancl/tenancy` for Phase 1 task T1.5 |
 | Evidence base | `docs/prd/04-multi-tenancy-architecture.md` §2.4, §4–§6, §12; `20-development-roadmap.md` §4.1(c); repo inspection on 2026-11-20 |
@@ -18,7 +18,7 @@
 - `config/permission.php`: stock package config (teams feature must be enabled in T1.3).
 - Migrations: `users`, `cache`, `jobs`, spatie permission tables only. No `tenants`, `tenant_domains`, `tenant_settings`, `audit_logs`.
 - `routes/web.php`: `Auth::routes()` + Blade `/home`; no host-based resolution layer.
-- PRD position: `04-multi-tenancy-architecture.md` §2.4 already rejects strict domain tenancy as the default; A-04 fixes shared-schema row isolation; OQ-022 is still `Open` in the register.
+- PRD position: `04-multi-tenancy-architecture.md` §2.4 already rejects strict domain tenancy as the default; A-04 fixes shared-schema row isolation; OQ-022 was `Open` at spike time and is now `Closed` in `22-open-questions-and-assumptions.md` §5.
 
 ## 2. Decision criteria
 
@@ -43,7 +43,7 @@
 
 **Recommendation: option (a), purpose-built.** It is the only option that satisfies C1, C3 and C6 without custom glue, and it is the PRD's stated default. stancl/tenancy remains a fallback only if the isolation acceptance gates (§5 below) fail at scale — that contingency should be recorded, not adopted.
 
-This is a **recommendation, not a ratification**: OQ-022 stays `Open` until the Super Admin (architecture) approves it in `22-open-questions-and-assumptions.md` §5.
+**Ratified 2026-11-20:** the Super Admin (architecture) approved option (a); OQ-022 is `Closed` in `22-open-questions-and-assumptions.md` §5.
 
 ## 4. Implementation shape for T1.5
 
@@ -74,7 +74,7 @@ This is a **recommendation, not a ratification**: OQ-022 stays `Open` until the 
 
 **Split trigger (record as an operational threshold, not a date):** move to separate instances when sustained queue lag exceeds the target in `18-non-functional-requirements.md`, or Reverb connections exceed documented sizing. This keeps OQ-026 from blocking T1.8 once ratified.
 
-OQ-026 remains `Open` pending Super Admin (platform engineering) ratification.
+**Ratified 2026-11-20:** the Super Admin (platform engineering) approved option (a); OQ-026 is `Closed` in `22-open-questions-and-assumptions.md` §5.
 
 ## 7. Risks and rollback
 
@@ -84,6 +84,6 @@ OQ-026 remains `Open` pending Super Admin (platform engineering) ratification.
 
 ## 8. Next actions
 
-1. Product owner ratifies OQ-022 (option a) and OQ-026 (option a) in `22-open-questions-and-assumptions.md` §5; statuses move to `Closed` and §2/§3 update accordingly.
+1. OQ-022 (option a) and OQ-026 (option a) ratified 2026-11-20 in `22-open-questions-and-assumptions.md` §5; §2/§3 statuses are `Closed`.
 2. Start T1.1 (Laravel 12→13 / PHP 8.4) — tenancy code must not merge before step 1.
 3. T1.5 implements §4 above; §5 checklist becomes part of Phase 1 exit evidence.
