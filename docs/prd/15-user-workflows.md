@@ -7,7 +7,7 @@
 | Status | Draft for Review |
 | Date | 2026-11-20 |
 | Owner | Product & Architecture Team |
-| Related documents | `02-user-roles-and-permissions.md`, `03-functional-requirements.md`, `04-multi-tenancy-architecture.md`, `05-reseller-hierarchy.md`, `06-product-marketplace.md`, `07-billing-and-financial-architecture.md`, `08-affiliate-and-commission-system.md`, `09-fulfillment-and-licensing.md`, `10-white-label-cms.md`, `12-crm-and-support.md`, `16-ui-ux-specification.md`, `17-security-requirements.md`, `18-non-functional-requirements.md`, `19-testing-and-acceptance-criteria.md` |
+| Related documents | `02-user-roles-and-permissions.md`, `03-functional-requirements.md`, `04-multi-tenancy-architecture.md`, `05-reseller-hierarchy.md`, `06-product-marketplace.md`, `07-billing-and-financial-architecture.md`, `08-affiliate-and-commission-system.md`, `09-fulfillment-and-licensing.md`, `10-white-label-cms.md`, `12-crm-and-support.md`, `16-ui-ux-specification.md`, `17-security-requirements.md`, `18-non-functional-requirements.md`, `19-testing-and-quality-assurance.md` |
 
 ## Table of Contents
 

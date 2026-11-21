@@ -134,7 +134,7 @@ Out of MVP scope unless separately funded or explicitly moved forward:
 
 The target architecture is a modular Laravel monolith:
 
-- Laravel 13 and PHP 8.4 target stack
+- Laravel 12 and PHP 8.2+ implementation baseline
 - Vue 3, Inertia 2, TypeScript and Tailwind CSS 4
 - Shared MySQL 8 database with tenant row isolation
 - Redis, Horizon and Reverb

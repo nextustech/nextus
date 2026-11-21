@@ -52,7 +52,7 @@ usage-based billing interface to the billing engine, outbound safety and cost gu
 WhatsApp campaign automation (owned by marketing docs; AI only *drafts* copy).
 
 **Provider stance (charter §3):** the module is **provider-integration-based — OpenAI and
-Google Gemini only**. Laravel 13's first-party AI SDK may be used as the internal
+Google Gemini only**. Laravel 12-compatible AI integration may be used as the internal
 orchestration/tool-calling abstraction, but the product spec below is provider-neutral and
 must be implementable with either provider directly if the SDK abstraction is not adopted.
 
@@ -60,7 +60,7 @@ must be implementable with either provider directly if the SDK abstraction is no
 
 ## 2. Architecture Overview
 
-All AI execution happens inside the Laravel 13 monolith (no separate AI microservice).
+All AI execution happens inside the Laravel 12 monolith (no separate AI microservice).
 Long-running work (embeddings, digests, monthly aggregation, moderation pre-checks on
 bulk content) runs on Redis/Horizon queues. Realtime events use Laravel Reverb.
 
@@ -70,7 +70,7 @@ flowchart LR
         W["Chat widget - iframe + shadow DOM"]
         D["Reseller dashboard - Vue 3 + Inertia"]
     end
-    subgraph Laravel 13 monolith
+    subgraph Laravel 12 monolith
         API["AI API layer /api/v1/ai"]
         ORCH["AI orchestrator - prompt assembly, tool dispatch, streaming"]
         TOOLS["Tool layer - catalog_lookup, lead_capture, order_status, kb_search, ticket_create"]
@@ -642,7 +642,7 @@ defaults; content lives in `ai_agents.system_prompt` + platform defaults):
 
 ## Appendix / References
 
-- Charter: `frenchies-prd-charter.md` (§3 stack, §6 tables, §8 ownership)
+- Authoring charter (internal, not in this repo): `frenchies-prd-charter.md` (§3 stack, §6 tables, §8 ownership)
 - API contracts for AI endpoints: `14-api-specification.md`
 - Quotation builder contract (assistant save-as-quotation target): `12-crm-and-support.md`
 - Ledger account for usage charges: `07-billing-and-financial-architecture.md`

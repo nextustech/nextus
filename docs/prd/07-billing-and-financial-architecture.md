@@ -632,7 +632,8 @@ J7  Dr Reseller Payable C · available   847.46   (- wallet refund_clawback)
 
 ## Appendix / References
 
-- Charter: `frenchies-prd-charter.md` §6 (canonical tables), §7 (financial model), §8 (FR ownership).
+- Authoring charter (internal, not in this repo): `frenchies-prd-charter.md` §6
+  (canonical tables), §7 (financial model), §8 (FR ownership).
 - Owning FR prefixes: `FR-BILLING-001…032`, `FR-PAYMENT-001…031`, `FR-WALLET-001…031`.
 - Cross-document: commission rules/attribution → `08-affiliate-and-commission-system.md`; fulfillment gating of commission release → `09-fulfillment-and-licensing.md`; schema/columns → `13-database-design.md`; payment security/PCI scope → `17-security-requirements.md`.
 

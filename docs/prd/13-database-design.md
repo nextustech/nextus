@@ -7,7 +7,7 @@
 | Status | Draft for Review |
 | Date | 2026-11-20 |
 | Owner | Product & Architecture Team |
-| Related documents | frenchies-prd-charter.md (§6 canonical inventory, §7 financial rules), 02-user-roles-and-permissions.md, 03-functional-requirements.md, 04-multi-tenancy-architecture.md, 05-reseller-hierarchy.md, 06-product-marketplace.md, 07-billing-and-financial-architecture.md, 08-affiliate-and-commission-system.md, 09-fulfillment-and-licensing.md, 10-white-label-cms.md, 11-ai-and-automation.md, 12-crm-and-support.md, 14-api-specification.md, 17-security-requirements.md, 18-non-functional-requirements.md |
+| Related documents | frenchies-prd-charter.md (internal, not in this repo — §6 canonical inventory, §7 financial rules), 02-user-roles-and-permissions.md, 03-functional-requirements.md, 04-multi-tenancy-architecture.md, 05-reseller-hierarchy.md, 06-product-marketplace.md, 07-billing-and-financial-architecture.md, 08-affiliate-and-commission-system.md, 09-fulfillment-and-licensing.md, 10-white-label-cms.md, 11-ai-and-automation.md, 12-crm-and-support.md, 14-api-specification.md, 17-security-requirements.md, 18-non-functional-requirements.md |
 
 ## Table of Contents
 
@@ -63,8 +63,9 @@
 This document is the authoritative schema specification for the Frenchies platform. It fully
 defines columns, types, defaults, keys, indexes, constraints, and relationships for:
 
-- all **86 canonical tables** fixed by `frenchies-prd-charter.md` §6 (names are FINAL; no
-  sibling document may invent alternatives for the same concept);
+- all **86 canonical tables** fixed by the internal `frenchies-prd-charter.md` §6 (not
+  in this repo; names are FINAL; no sibling document may invent alternatives for the
+  same concept);
 - the **deferred additions** demanded by sibling documents (`07` → `ledger_accounts`,
   `gateway_settlements`, `risk_blocklist`; `02` → `support_department_agents` + extended
   `permissions` columns; `12` → `csat_responses`, `kb_categories`, `kb_articles`,
@@ -77,7 +78,7 @@ defines columns, types, defaults, keys, indexes, constraints, and relationships 
   `04-multi-tenancy-architecture.md` §3 rule R1.
 
 Stack constraints (charter §3): MySQL 8, **single shared database, shared schema**, row-level
-tenant isolation via `tenant_id` columns + global scopes; Laravel 13 / PHP 8.4; Redis for
+tenant isolation via `tenant_id` columns + global scopes; Laravel 12 / PHP 8.2+; Redis for
 cache/queues (Horizon) with framework DB tables retained for `failed_jobs` and driver
 fallback. **Documentation only — this document defines no migrations and no code.**
 

@@ -39,7 +39,7 @@ Analytics (22), API & Integration Management (23), and Administration & Audit (2
 
 It defines *what* the platform must do — testable "shall" statements, enumerated statuses,
 legal state transitions, edge-case handling, and acceptance criteria — for implementation in
-Laravel 13 / PHP 8.4, Vue 3 + Inertia + TypeScript + Tailwind CSS 4, MySQL 8 shared-schema
+Laravel 12 / PHP 8.2+, Vue 3 + Inertia + TypeScript + Tailwind CSS 4, MySQL 8 shared-schema
 multi-tenancy, Redis/Horizon/Reverb/Sanctum, and Razorpay/Cashfree. It does **not** define
 architecture deep-dives (see `04-multi-tenancy-architecture.md` and `05-reseller-hierarchy.md`),
 database column-level design (see `13-database-design.md`), or the functional requirements of

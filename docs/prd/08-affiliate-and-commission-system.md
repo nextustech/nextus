@@ -401,7 +401,7 @@ Net settled 9,764.00 = Tax Payable net (1,525.42 − 36.00 ITC = 1,489.42)
 
 ## Appendix / References
 
-- Charter: `frenchies-prd-charter.md` §7.5 (hierarchy split), §7.6 (separate affiliate pool), §7.7 (clawback), §7.10 (idempotency).
+- Authoring charter (internal, not in this repo): `frenchies-prd-charter.md` §7.5 (hierarchy split), §7.6 (separate affiliate pool), §7.7 (clawback), §7.10 (idempotency).
 - Owning FR prefixes: `FR-COMMISSION-001…030`, `FR-AFFILIATE-001…030`.
 - Ledger postings, payout flow, and the no-affiliate numeric baseline: `07-billing-and-financial-architecture.md` (§5.2, §5.5, §7).
 

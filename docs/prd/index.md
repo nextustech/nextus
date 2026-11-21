@@ -39,6 +39,7 @@ requirements; `23-master-prd.md` provides the consolidated summary and traceabil
 | 18 | [`18-non-functional-requirements.md`](18-non-functional-requirements.md) | NFR-NNN performance, availability and operations |
 | 19 | [`19-testing-and-quality-assurance.md`](19-testing-and-quality-assurance.md) | Test strategy, suites, UAT and release gates |
 | 20 | [`20-development-roadmap.md`](20-development-roadmap.md) | Ten-phase implementation roadmap and acceptance gates |
+| 21 | [`21-risk-register.md`](21-risk-register.md) | RISK-NNN register: per-phase risk treatments and cross-cutting controls |
 | 22 | [`22-open-questions-and-assumptions.md`](22-open-questions-and-assumptions.md) | OQ/A decision register and decision log |
 | 23 | [`23-master-prd.md`](23-master-prd.md) | Consolidated executive summary and traceability |
 
@@ -99,6 +100,7 @@ requirements; `23-master-prd.md` provides the consolidated summary and traceabil
 | SEC-* | `17-security-requirements.md` |
 | NFR-* | `18-non-functional-requirements.md` |
 | TEST-* | `19-testing-and-quality-assurance.md` |
+| RISK-* | `21-risk-register.md` |
 | OQ-* / A-* | `22-open-questions-and-assumptions.md` |
 | Phase/T* | `20-development-roadmap.md` |
 
@@ -108,12 +110,22 @@ process in `22-open-questions-and-assumptions.md`.
 
 ## Filename and Cross-Reference Notes
 
-The repository currently contains `20-development-roadmap.md` rather than the overview's
-planned `20-deployment-and-operations.md` name. `21-implementation-roadmap.md` is
-similarly not present; roadmap content is currently owned by
-`20-development-roadmap.md`. Operations deployment detail should be added under a
-future dedicated document or reconciled with the existing roadmap before implementation
-gates are finalized.
+Earlier drafts of this library planned `20-deployment-and-operations.md` and
+`21-implementation-roadmap.md`; neither was ever written. Cross-references have been
+reconciled as follows:
+
+- Phase gates, effort and backlog content is owned by `20-development-roadmap.md`.
+- Test suite ownership is `19-testing-and-quality-assurance.md` (TEST-NNN); older
+  references to a `19-testing-and-acceptance-criteria.md` now point there.
+- Risk IDs (`RISK-NNN`) are owned by `21-risk-register.md`. The doc-number slot 21
+  was originally reserved for the unwritten `21-implementation-roadmap.md`; it now
+  hosts the risk register instead, and no document references the old name.
+- Deployment/operations detail (Docker/Nginx topology, CI/CD, Cloudflare config,
+  Horizon/Reverb operations) is **not yet consolidated**. Its nearest sources are
+  `20-development-roadmap.md` §9 Release Strategy (environments, pipeline, rollback)
+  and `18-non-functional-requirements.md` §3/§6/§7 (availability, observability,
+  backup/DR). Authoring `20-deployment-and-operations.md` remains a doc-library gap
+  and should be closed before Phase 10 (T10.6) delivery gates are finalized.
 
 ## Version History
 

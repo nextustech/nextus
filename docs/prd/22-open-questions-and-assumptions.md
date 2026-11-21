@@ -7,7 +7,7 @@
 | Status | Draft for Review |
 | Date | 2026-11-01 |
 | Owner | Product & Architecture Team |
-| Related documents | 00-product-overview.md, 01-business-requirements.md, 07-billing-and-financial-architecture.md, 08-affiliate-and-commission-system.md, 17-security-requirements.md, 20-deployment-and-operations.md, 21-implementation-roadmap.md, 23-master-prd.md |
+| Related documents | 00-product-overview.md, 01-business-requirements.md, 07-billing-and-financial-architecture.md, 08-affiliate-and-commission-system.md, 17-security-requirements.md, 20-development-roadmap.md, 21-risk-register.md, 23-master-prd.md |
 
 ## Table of Contents
 
@@ -217,7 +217,7 @@ Status. Recommendations are PRD-team proposals, not decisions.
 - **Recommendation:** (a) with a measurable exit gate: beta graduates when the cohort
   reaches ≥ 40% 30-day activation (M1.2) and ≥ 2 documented pricing objections are
   resolved; beta pricing grandfathered for 12 months after GA.
-- **Depends on / affects:** OQ-002, OQ-035; `21-implementation-roadmap.md`.
+- **Depends on / affects:** OQ-002, OQ-035; `20-development-roadmap.md`.
 
 #### OQ-006 — AI usage-based billing model and markup
 
@@ -547,8 +547,8 @@ Status. Recommendations are PRD-team proposals, not decisions.
   edge SSL), with (b) offered as an assisted upgrade for non-technical resellers; defer
   (c). Store verification state and expiry in `tenant_domains`; auto-renew handled at the
   edge; exact Cloudflare product flow documented in `04-multi-tenancy-architecture.md`
-  and `20-deployment-and-operations.md`.
-- **Depends on / affects:** A-13; `04-multi-tenancy-architecture.md`, `20-deployment-and-operations.md`.
+  §8 (Cloudflare workflow for SSL) and `20-development-roadmap.md` §9.
+- **Depends on / affects:** A-13; `04-multi-tenancy-architecture.md`, `20-development-roadmap.md` §9.
 
 #### OQ-021 — Default AI provider/model policy and who pays AI tokens
 
@@ -559,7 +559,7 @@ Status. Recommendations are PRD-team proposals, not decisions.
 | Status | Open |
 
 - **Context:** AI module is spec'd for P2 with OpenAI + Google Gemini integrations
-  (A-19); Laravel 13's first-party AI SDK may be used as an implementation detail only.
+  (A-19); a Laravel-12-compatible AI integration approach may be used as an implementation detail.
   Token payer and default model policy are undefined.
 - **Why it matters:** Unmetered AI on a multi-tenant platform is an uncapped cost line;
   model choice affects answer quality (support deflection M4.3) and PII exposure to
@@ -682,7 +682,7 @@ Status. Recommendations are PRD-team proposals, not decisions.
   monitored against NFR queue-lag targets (defined in `18-non-functional-requirements.md`);
   split to (b) when sustained queue latency exceeds target or Reverb connections exceed
   documented sizing — trigger recorded as an operational threshold, not a date.
-- **Depends on / affects:** NFR-NNN in `18-non-functional-requirements.md`; `20-deployment-and-operations.md`.
+- **Depends on / affects:** NFR-NNN in `18-non-functional-requirements.md` §4 (scalability); sizing trigger recorded at G0.2 in `20-development-roadmap.md` §4.1.
 
 ### 3.5 Legal / Compliance (OQ-027 – OQ-032)
 
@@ -754,8 +754,9 @@ Status. Recommendations are PRD-team proposals, not decisions.
 - **Recommendation:** (a) with a platform-generated DPA accepted at reseller approval
   (MVP: checkbox acceptance recorded with timestamp), consent notices rendered per tenant
   branding, data-principal request workflow routed to owning tenant (platform executes
-  technically), breach playbook with notification-content generation (runbook in
-  `20-deployment-and-operations.md`). Counsel to confirm before GA — launch gate.
+  technically), breach playbook with notification-content generation (requirements in
+  `17-security-requirements.md` §9; operational runbook pending — see `index.md`
+  §Filename and Cross-Reference Notes). Counsel to confirm before GA - launch gate.
 - **Depends on / affects:** OQ-027, OQ-030; `17-security-requirements.md`.
 
 #### OQ-030 — Data-residency and cross-border transfer requirements
@@ -776,7 +777,7 @@ Status. Recommendations are PRD-team proposals, not decisions.
   only after PII redaction with no-training contractual terms from providers; revisit
   (c) only alongside international expansion (OQ-004). Document region commitments in
   reseller terms.
-- **Depends on / affects:** OQ-004, OQ-021, OQ-023; `20-deployment-and-operations.md`.
+- **Depends on / affects:** OQ-004, OQ-021, OQ-023; `17-security-requirements.md` §9 (data protection).
 
 #### OQ-031 — Acceptable-use policy and anti-phishing enforcement specifics
 
@@ -946,7 +947,7 @@ Status. Recommendations are PRD-team proposals, not decisions.
   owns payment anomalies, Super Admin arbitrates suspensions above ₹50,000 exposure;
   MVP rule alerts: refund ratio > 10% per tenant/30d, chargeback > 0.1%/month, first-week
   high-velocity orders, KYC-fresh storefront spike; weekly review cadence; full matrix in
-  `20-deployment-and-operations.md`.
+  `17-security-requirements.md` §10 (Fraud & Abuse Controls).
 - **Depends on / affects:** OQ-010, OQ-031, OQ-035; `17-security-requirements.md`.
 
 ## 4. Assumptions Ledger (A-01 – A-25)
@@ -965,9 +966,9 @@ convert to an OQ per §1 rule 3.
 | A-07 | Double-entry ledger (`journal_entries`/`journal_lines`) is authoritative; wallet balances are derived projections, never hand-edited. | Auditability, reconciliation, dispute resolution; charter §7.1–7.2. | Deviating breaks M3.1–M3.4, refund clawback correctness, and finance trust — no credible alternative accepted. |
 | A-08 | Commissions accrue only at webhook-verified capture and are idempotent per order+beneficiary+type+cycle. | No accrual before money is real; replay-safe; charter §7.4, §7.10. | Double-accrual or phantom commissions if idempotency slips — hard AC in `07-billing-and-financial-architecture.md`. |
 | A-09 | All monetary amounts are `DECIMAL(15,2)` with an explicit `currency` column; no floats anywhere. | Financial correctness; future multi-currency readiness (OQ-004). | Rounding/precision defects (OQ-009) if violated; migrations painful if introduced late. |
-| A-10 | Laravel 12 → 13 in-place upgrade is low-effort (low-breaking-changes release). | Laravel 13 release notes; charter §3. | Phase 1 slips if effort is larger; buffer and rollback plan required in `21-implementation-roadmap.md`. |
+| A-10 | Laravel 12 remains the approved framework baseline for Phase 1; no framework-major upgrade is included. | Owner decision 2026-11-20; charter §3. | A future Laravel major upgrade requires a separate decision, rollback plan, and validation pass. |
 | A-11 | Bootstrap/laravel/ui Blade scaffolding is fully replaced by the Inertia starter (Vue 3 + TS + Tailwind 4) in Phase 1. | Target stack conflicts with current scaffolding; charter §2–3. | Accepted migration cost; any Blade-dependent custom code must be rewritten — inventory required at Phase 1 start. |
-| A-12 | spatie/laravel-permission upgrades to ^7.0/^8.0 with teams feature, `teams = tenant`. | Laravel 13 compatibility + tenant-scoped roles; charter §3, §5. | Role-assignment model changes; permission catalogue (doc 02) must be re-checked; no business impact. |
+| A-12 | spatie/laravel-permission uses a Laravel-12-compatible release with teams feature, `teams = tenant`. | Tenant-scoped roles; charter §3, §5. | Role-assignment model changes; permission catalogue (doc 02) must be re-checked; no business impact. |
 | A-13 | Cloudflare provides DNS, proxy, and edge SSL for custom domains. | Charter infra list; mature free-tier edge. | Vendor dependency; alternative CDN/DNS swap is ops-only if `tenant_domains` stays provider-agnostic (OQ-020). |
 | A-14 | Users are tenant-scoped; no account merging; a human in multiple tenants holds separate accounts. | Charter §4; simplicity; data minimization. | UX friction for multi-tenant humans; support identity lookups need platform-staff tools; SSO/merge is future work. |
 | A-15 | Affiliate commissions form a separate pool, defined per affiliate, never cascading through the reseller hierarchy. | Charter §4, §7.6. | None — fixed rule; violating it corrupts commission economics. |
@@ -1039,7 +1040,7 @@ Local notes; the register itself is §2–§4 of this document.
    change any charter-fixed rule (e.g., the 7-day hold in A-05 remains the default until
    OQ-007 is decided).
 3. P0 OQs (001, 002, 007, 008, 010, 013, 014, 020, 027, 028, 029, 031) gate their build
-   phases per §1 rule 5; the phase mapping is finalized in `21-implementation-roadmap.md`.
+   phases per §1 rule 5; the phase mapping is finalized in `20-development-roadmap.md`.
 4. Counsel/CA-dependent items (OQ-027, OQ-028, OQ-029, OQ-031, OQ-032) assume external
    advisors are engaged during Phase 1 — budget and engagement are not yet assigned.
 
@@ -1049,5 +1050,5 @@ Local notes; the register itself is §2–§4 of this document.
   (A-04, A-17), MVP scope §10 (A-18, A-19).
 - `01-business-requirements.md` — metrics tied to these OQs (M1.x ↔ OQ-002/003/035,
   M2.x ↔ OQ-010/014, M3.x ↔ OQ-007/008/011, M4.x ↔ OQ-034).
-- `21-implementation-roadmap.md` — phase gates consuming P0 OQs.
+- `20-development-roadmap.md` — phase gates consuming P0 OQs.
 - `23-master-prd.md` — consolidated decision log summary (lead-owned).

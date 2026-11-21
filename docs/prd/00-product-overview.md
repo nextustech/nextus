@@ -38,7 +38,7 @@ sub-resellers, affiliates, support, and finances — without building technology
 digital-products business in under one day, on infrastructure and compliance tooling they
 could never build alone, and expand it into a distribution downline of their own.
 
-The platform is a **monolith, modular by domain** (Laravel 13 + PHP 8.4), with a single
+The platform is a **monolith, modular by domain** (Laravel 12 + PHP 8.2+), with a single
 shared MySQL 8 database with `tenant_id` row isolation, Redis-backed caching/queues
 (Horizon) and realtime (Reverb), Sanctum auth, and Vue 3 + Inertia + TypeScript +
 Tailwind CSS 4 front ends. No microservices. See §7 and `04-multi-tenancy-architecture.md`.
@@ -95,9 +95,9 @@ compliance) in one subscription — and can build their own distribution network
 - **AI cost collapse.** Provider-integrated AI (OpenAI, Google Gemini) for support
   deflection, catalog copy, and lead qualification is now a marginal-cost feature that a
   multi-tenant platform can amortize across all resellers.
-- **Stack timing.** Laravel 13 (released 2026-03-17, supported through ~Q3 2027 bug-fix /
-  ~Q1 2028 security) plus PHP 8.4 gives a 5+ year support runway for a platform that must
-  be maintainable by a small team.
+- **Stack timing.** Laravel 12 plus PHP 8.2+ is the owner-approved implementation baseline.
+  A later framework-major upgrade may be planned separately after MVP only if its value
+  outweighs migration and validation cost.
 
 ## 4. Target Personas
 
@@ -176,7 +176,7 @@ Each principle is testable; reviews and acceptance criteria trace back to these.
 
 ## 7. High-Level Architecture
 
-Modular monolith; all modules in one Laravel 13 codebase, separated by domain folders.
+Modular monolith; all modules in one Laravel 12 codebase, separated by domain folders.
 Detailed designs: `04-multi-tenancy-architecture.md`, `05-reseller-hierarchy.md`,
 `13-database-design.md`.
 
@@ -192,7 +192,7 @@ flowchart TB
 
     edge["Cloudflare<br/>DNS, proxy, edge SSL for custom domains"]
 
-    subgraph monolith["Laravel 13 Modular Monolith (PHP 8.4)"]
+    subgraph monolith["Laravel 12 Modular Monolith (PHP 8.2+)"]
         inertia["Inertia + Vue 3 + TypeScript + Tailwind CSS 4"]
         api["REST API (Laravel Sanctum)"]
         subgraph domains["Domain Modules"]
@@ -281,8 +281,8 @@ cross-reference by filename.
 | 17 | `17-security-requirements.md` | Security requirements (SEC-NNN): auth hardening, tenancy isolation tests, secrets, audit logging, fraud/abuse controls, secure SDLC gates. |
 | 18 | `18-non-functional-requirements.md` | Non-functional requirements (NFR-NNN): performance budgets, availability targets, scalability, observability, backup/RPO/RTO. |
 | 19 | `19-testing-and-quality-assurance.md` | Test strategy: unit/integration/E2E, tenancy-isolation regression suite, UAT for reseller onboarding, release quality gates. |
-| 20 | `20-deployment-and-operations.md` | Deployment and operations: Docker/Nginx topology, CI/CD, Cloudflare configuration, Horizon/Reverb operations, backups, incident runbooks. |
-| 21 | `21-implementation-roadmap.md` | Phased delivery plan: Phase 1 stack migration tasks (Laravel 12→13, Inertia install), MVP milestones, P2/P3 schedule, acceptance gates per phase. |
+| 20 | `20-development-roadmap.md` | Ten-phase implementation roadmap: tasks, effort, dependencies, deliverables, acceptance criteria, risks, test requirements and decision gates per phase. |
+| 21 | `21-risk-register.md` | Canonical `RISK-NNN` register: 43 risks with category, phase exposure, proposed severity/likelihood, treatment controls per phase and cross-cutting standing treatments. |
 | 22 | `22-open-questions-and-assumptions.md` | Master open-questions register (OQ-NN) and assumptions ledger (A-NN) with owners, priorities, and recommendations. |
 | 23 | `23-master-prd.md` | Consolidated master PRD: executive summary, decision log, requirement index, traceability from goals to FR/NFR IDs. |
 | — | `index.md` | PRD library entry point: table of contents, reading order by role, version history. |
@@ -315,7 +315,7 @@ module spec'd in `11-ai-and-automation.md`, scheduled P2), usage-based AI billin
 integration UI, advanced fraud detection, multi-currency, mobile apps, automated gateway
 payouts, multi-language, theme marketplace.
 
-Full prioritized backlog and phase gates: `21-implementation-roadmap.md`.
+Full prioritized backlog and phase gates: `20-development-roadmap.md`.
 
 ## 10. Monetization Overview
 

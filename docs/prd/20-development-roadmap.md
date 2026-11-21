@@ -7,7 +7,7 @@
 | Status | Draft for Review |
 | Date | 2026-11-20 |
 | Owner | Product & Architecture Team |
-| Related documents | 01-business-requirements.md, 03-functional-requirements.md, 04-multi-tenancy-architecture.md, 05-reseller-hierarchy.md, 06-product-marketplace.md, 07-billing-and-financial-architecture.md, 08-affiliate-and-commission-system.md, 09-fulfillment-and-licensing.md, 10-white-label-cms.md, 11-ai-and-automation.md, 12-crm-and-support.md, 14-api-specification.md, 15-user-workflows.md, 16-ui-ux-specification.md, 17-security-requirements.md, 18-non-functional-requirements.md, 19-testing-and-acceptance-criteria.md, 21-risk-register.md, 22-open-questions-and-assumptions.md |
+| Related documents | 01-business-requirements.md, 03-functional-requirements.md, 04-multi-tenancy-architecture.md, 05-reseller-hierarchy.md, 06-product-marketplace.md, 07-billing-and-financial-architecture.md, 08-affiliate-and-commission-system.md, 09-fulfillment-and-licensing.md, 10-white-label-cms.md, 11-ai-and-automation.md, 12-crm-and-support.md, 14-api-specification.md, 15-user-workflows.md, 16-ui-ux-specification.md, 17-security-requirements.md, 18-non-functional-requirements.md, 19-testing-and-quality-assurance.md, 21-risk-register.md, 22-open-questions-and-assumptions.md |
 
 ## Table of Contents
 
@@ -51,7 +51,7 @@ platform through payments, commissions, basic fulfillment/licensing) is defined 
 Section 6 and follows charter §10.
 
 **Out of scope for this document:** application code, migrations, configuration files,
-detailed test cases (owned by `19-testing-and-acceptance-criteria.md`), risk treatment
+detailed test cases (owned by `19-testing-and-quality-assurance.md`), risk treatment
 detail (owned by `21-risk-register.md`).
 
 ## 2. How to Read This Document
@@ -65,7 +65,7 @@ detail (owned by `21-risk-register.md`).
   **(d)** Deliverables · **(e)** Development tasks (estimate table) ·
   **(f)** Acceptance criteria (measurable phase exit gates) · **(g)** Risks
   (cross-reference `RISK-NNN` in `21-risk-register.md`) · **(h)** Testing requirements
-  (suites from `19-testing-and-acceptance-criteria.md` that must pass).
+  (suites from `19-testing-and-quality-assurance.md` that must pass).
 - FR references use canonical prefixes only, e.g. `FR-TENANT-001…022` (owner:
   `03-functional-requirements.md`). UI references use `UI-<A..F>-NN` (owner:
   `16-ui-ux-specification.md`). OQ references use `OQ-NNN` (owner:
@@ -107,7 +107,7 @@ includes AC verification, migration reversibility note, and updated API contract
 ### 4.1 Phase 1 — Foundation and multi-tenancy
 
 **(a) Objective.** Replace the legacy skeleton with the target stack and establish the
-tenancy/RBAC/audit foundations every later phase builds on: Laravel 12 → 13 on PHP 8.4,
+tenancy/RBAC/audit foundations every later phase builds on: Laravel 12 on PHP 8.2+,
 Inertia 2 + Vue 3 + TypeScript + Tailwind CSS 4 replacing laravel/ui + Blade auth,
 spatie/laravel-permission upgraded with `teams = tenant`, Sanctum/Horizon/Reverb
 installed, shared-schema tenancy enforced end-to-end, and a working audit trail.
@@ -124,7 +124,7 @@ installed, shared-schema tenancy enforced end-to-end, and a working audit trail.
 
 **(c) Dependencies.**
 - Prior-phase outputs: none (first phase).
-- External: PHP 8.4 runtime available in CI/Docker base images; Redis available for
+- External: PHP 8.2+ runtime available in CI/Docker base images; Redis available for
   local + staging; Reverb WebSocket port provisioned in staging.
 - **OQ decisions needed:** `OQ-022` (tenancy layer purpose-built vs stancl/tenancy)
   must be closed **before** task T1.5 starts; `OQ-026` (Redis/Horizon/Reverb
@@ -143,27 +143,27 @@ installed, shared-schema tenancy enforced end-to-end, and a working audit trail.
 - Screens (`16-ui-ux-specification.md`): login/forgot-password (replacing laravel/ui
   views), UI-A-01 shell, UI-A-16 (settings baseline), UI-A-17 (audit logs),
   UI-A-18 (users, roles & permissions), UI-B-01 app shell.
-- Docs: environment/runbook (Docker, PHP 8.4, Horizon/Reverb startup), upgrade notes
-  (Laravel 12→13 breaking-change log), tenancy code-review checklist feeding
+- Docs: environment/runbook (Docker, PHP 8.2+, Horizon/Reverb startup), baseline notes
+  (Laravel 12 dependency and compatibility record), tenancy code-review checklist feeding
   `17-security-requirements.md`.
 
 **(e) Development tasks.**
 
 | ID | Task | BE | FE | QA | DO | Total |
 |---|---|---:|---:|---:|---:|---:|
-| T1.1 | Laravel 12 → 13 in-place upgrade, PHP 8.4 runtime, dependency bump (spatie compat), CI + Docker image baseline | 5 | 0 | 2 | 3 | 10 |
+| T1.1 | Laravel 12 baseline validation, PHP 8.2+ runtime, dependency/platform check, CI + Docker image baseline | 3 | 0 | 2 | 2 | 7 |
 | T1.2 | Remove laravel/ui + Blade auth (`Auth::routes()`, `/home`); install Inertia 2 + Vue 3 + TS + Tailwind 4 (Vite plugin, Ziggy, app entry, base layouts) | 3 | 9 | 2 | 2 | 16 |
-| T1.3 | spatie/laravel-permission → ^7.0/^8.0 with `teams = tenant`; team-scoped role/permission migration; seed all 12 canonical roles + platform permission set | 5 | 0 | 3 | 0 | 8 |
+| T1.3 | spatie/laravel-permission Laravel-12-compatible release with `teams = tenant`; team-scoped role/permission migration; seed all 12 canonical roles + platform permission set | 5 | 0 | 3 | 0 | 8 |
 | T1.4 | Laravel Sanctum: session + API token auth, login/logout/reset flows, `login_activities` capture, rate limiting | 5 | 7 | 1 | 0 | 13 |
 | T1.5 | Tenancy core: `TenantContext`, tenant middleware, `tenant_id` global scope enforcement, subdomain + domain resolution, tenant lifecycle states | 11 | 0 | 2 | 0 | 13 |
 | T1.6 | Base users & invitations: tenant-scoped user CRUD, `user_invitations` create/accept/revoke flows | 4 | 6 | 1 | 0 | 11 |
 | T1.7 | Audit logging foundation: `audit_logs` writer (events + auth + admin actions) and UI-A-17 viewer | 3 | 5 | 1 | 0 | 9 |
 | T1.8 | Redis + Horizon + Reverb install/config, queue workers, broadcast channel auth, health checks | 4 | 0 | 1 | 2 | 7 |
 | T1.9 | Design tokens + app shells: Tailwind token layer (16 §2.9/§2.10), interface A/B shells, nav, table/form primitives | 2 | 9 | 1 | 0 | 12 |
-| | **Phase 1 total** | **42** | **36** | **14** | **7** | **99** |
+| | **Phase 1 total** | **40** | **36** | **14** | **6** | **96** |
 
 **(f) Acceptance criteria (phase exit).**
-1. Application runs on PHP 8.4 / Laravel 13 with zero deprecation warnings in CI; CI
+1. Application runs on PHP 8.2+ / Laravel 12 with zero deprecation warnings in CI; CI
    green (build, pint, phpunit, vite build) on every push.
 2. No laravel/ui or Blade auth views remain; login, reset, and invitation flows pass
    through Inertia pages; `Auth::routes()` removed from `routes/web.php`.
@@ -179,12 +179,12 @@ installed, shared-schema tenancy enforced end-to-end, and a working audit trail.
    authenticated dashboard session within 2 s in staging.
 7. Open P0/P1 bugs: 0. Open P2 bugs ≤ 5 with owners.
 
-**(g) Risks:** `RISK-014` (Laravel 13 early-adopter bugs), `RISK-015` (spatie v7/v8 +
-teams migration), `RISK-016` (laravel/ui removal breaking routes), `RISK-001`
+**(g) Risks:** `RISK-014` (deferred Laravel-major upgrade risk), `RISK-015` (spatie
+teams migration on Laravel 12), `RISK-016` (laravel/ui removal breaking routes), `RISK-001`
 (cross-tenant data leakage), `RISK-035` (Reverb/realtime sizing), `RISK-020`
 (key-person dependency) — details in `21-risk-register.md`.
 
-**(h) Testing requirements:** suites in `19-testing-and-acceptance-criteria.md`
+**(h) Testing requirements:** suites in `19-testing-and-quality-assurance.md`
 covering **auth/session**, **RBAC with teams**, **tenancy isolation**, and **audit**
 must pass at 100% of their P0 cases; smoke E2E (login → dashboard → tenant switch)
 green; upgrade regression suite (Laravel 12 baseline comparisons) green.
@@ -265,7 +265,7 @@ reseller feature asks).
 
 **(h) Testing requirements:** suites for **RBAC/teams**, **reseller lifecycle**,
 **hierarchy closure invariants**, **notifications**, and **invitations** in
-`19-testing-and-acceptance-criteria.md` must pass (100% P0, ≥95% P1 cases); regression
+`19-testing-and-quality-assurance.md` must pass (100% P0, ≥95% P1 cases); regression
 of Phase 1 isolation suite must stay green.
 
 ---
@@ -339,7 +339,7 @@ tenant boundaries), `RISK-039` (insufficient launch catalog content), `RISK-031`
 (third-party SDK/media library changes), `RISK-018` (index-less query performance).
 
 **(h) Testing requirements:** suites for **catalog**, **distribution authorization**,
-**demos**, and **media upload** in `19-testing-and-acceptance-criteria.md` must pass;
+**demos**, and **media upload** in `19-testing-and-quality-assurance.md` must pass;
 Phase 1–2 isolation and RBAC regressions remain green.
 
 ---
@@ -414,7 +414,7 @@ acceptable-use + takedown hooks), `RISK-018` (uncached storefront query performa
 
 **(h) Testing requirements:** suites for **storefront rendering**, **CMS publish
 workflow**, **custom domain/SSL**, **media security**, and **accessibility baseline**
-in `19-testing-and-acceptance-criteria.md` must pass; cross-browser matrix (Chrome/
+in `19-testing-and-quality-assurance.md` must pass; cross-browser matrix (Chrome/
 Firefox/Safari, 3 viewports) executed; Phase 1-3 regressions green.
 
 ---
@@ -500,7 +500,7 @@ errors), `RISK-025` (invoice-number concurrency), `RISK-005` (refund/chargeback 
 
 **(h) Testing requirements:** suites for **checkout & orders**, **payments/webhooks**
 (incl. replay/fuzz), **invoicing/GST**, **subscriptions**, **coupons**, and
-**customer accounts** in `19-testing-and-acceptance-criteria.md` must pass; payment
+**customer accounts** in `19-testing-and-quality-assurance.md` must pass; payment
 E2E runs nightly against **both** gateway sandboxes; Phase 1-4 regressions green.
 
 ---
@@ -583,7 +583,7 @@ fraud), `RISK-007` (affiliate fraud), `RISK-022` (manual payout errors/fraud),
 
 **(h) Testing requirements:** suites for **ledger/wallet invariants**, **commission
 engine**, **affiliates & attribution**, **payouts**, **reconciliation**, and
-**rounding properties** in `19-testing-and-acceptance-criteria.md` must pass at 100%
+**rounding properties** in `19-testing-and-quality-assurance.md` must pass at 100%
 (P0+P1); duplicate/replay financial scenario suite green; Phase 1-5 regressions green.
 
 ---
@@ -655,7 +655,7 @@ order bursts delaying fulfillment), `RISK-031` (partner API breaking changes),
 
 **(h) Testing requirements:** suites for **fulfillment flows (auto + manual)**,
 **state machine/SLA**, **licensing & activations**, and **fulfillment-commission
-coupling** in `19-testing-and-acceptance-criteria.md` must pass; driver failure/timeout
+coupling** in `19-testing-and-quality-assurance.md` must pass; driver failure/timeout
 simulation green; Phase 1-6 regressions green.
 
 ---
@@ -730,7 +730,7 @@ tenants in tickets/leads — `UI-F-05` masking rules).
 
 **(h) Testing requirements:** suites for **CRM pipeline**, **quotations**,
 **support tickets & channels**, **SLA/escalation**, **CSAT/KB**, and **PII masking**
-in `19-testing-and-acceptance-criteria.md` must pass; the MVP support subset must be
+in `19-testing-and-quality-assurance.md` must pass; the MVP support subset must be
 green by the beta gate (§5); Phase 1-7 regressions green.
 
 ---
@@ -809,7 +809,7 @@ ban), `RISK-036` (n8n self-hosted reliability), `RISK-035` (Reverb/streaming sca
 
 **(h) Testing requirements:** suites for **AI chatbot/safety**, **assistant tenant
 scoping**, **usage caps & budgets**, **WhatsApp messaging**, and **n8n triggers** in
-`19-testing-and-acceptance-criteria.md` must pass; cost-control chaos tests (provider
+`19-testing-and-quality-assurance.md` must pass; cost-control chaos tests (provider
 kill, budget exhaustion) green; Phase 1-8 regressions green.
 
 ---
@@ -825,7 +825,7 @@ stabilize, and execute the release (MVP GA inside the phase, full-plan GA at exi
 
 | Owning doc | FR prefixes / range | Coverage in this phase |
 |---|---|---|
-| `19-testing-and-acceptance-criteria.md` | TEST-NNN (all suites) | Full-suite execution, automation completion, UAT evidence |
+| `19-testing-and-quality-assurance.md` | TEST-NNN (all suites) | Full-suite execution, automation completion, UAT evidence |
 | `18-non-functional-requirements.md` | NFR-NNN | Performance/load baselines, resilience, backup/DR drill |
 | `17-security-requirements.md` | SEC-NNN | Security checklist audit, pen-test coordination, dependency/vuln scans |
 | All FR modules | P0/P1 remainder | Defect burn-down to 0 open P0/P1 before each GA |
@@ -884,7 +884,7 @@ stabilize, and execute the release (MVP GA inside the phase, full-plan GA at exi
 `RISK-030` (DPDP/data residency non-compliance at launch).
 
 **(h) Testing requirements:** **every suite** in
-`19-testing-and-acceptance-criteria.md` executed end-to-end (full regression at least
+`19-testing-and-quality-assurance.md` executed end-to-end (full regression at least
 2× pre-GA), plus dedicated NFR load run and security test window; Phase-local suites
 from Phases 1-9 must all be green in the final run — any red suite blocks GA
 (go/no-go at §9).
@@ -1019,7 +1019,7 @@ the drag-drop page builder (Phase 4 P2 scope) are **post-MVP**.
 | 25 | CRM (leads/quotations/sales reporting) | FR-CRM, `12` | P8 (post-beta) | **No** (beta: support only) |
 
 **MVP go/no-go gate (2027-09-17):** all rows 1–22 verified by their suites in
-`19-testing-and-acceptance-criteria.md` at 100% P0 / ≥95% P1, zero open P0/P1
+`19-testing-and-quality-assurance.md` at 100% P0 / ≥95% P1, zero open P0/P1
 defects, Gate G9 legal items closed — else MVP GA moves right (decision by PM +
 Super Admin, logged in §10 gate table).
 
@@ -1205,7 +1205,7 @@ post-MVP unless closed before Phase 3 exit).
 8. **Open question (local):** `OQ-017` (reviews) and stacked coupons (`OQ-016` outcome)
    must be resolved before their phase rows — if unresolved at Phase 3 exit, reviews
    defer to Section 7 post-MVP list automatically.
-9. **[ASSUMPTION]** Doc `19-testing-and-acceptance-criteria.md` suite families referenced
+9. **[ASSUMPTION]** Doc `19-testing-and-quality-assurance.md` suite families referenced
    by name map 1:1 to TEST ranges defined there; if 19 renames suites, §4(h) references
    follow (IDs remain owned by 19).
 10. **[ASSUMPTION]** Gantt shows gates G1, G5–G9 only (G2–G4 omitted for legibility);
@@ -1218,7 +1218,7 @@ post-MVP unless closed before Phase 3 exit).
 
 ## 13. Appendix / References
 
-- Authoring charter: `frenchies-prd-charter.md` (§3 tech decisions, §8 ID ownership,
+- Authoring charter (internal, not in this repo): `frenchies-prd-charter.md` (§3 tech decisions, §8 ID ownership,
   §10 MVP scope, §11 writing rules).
 - Scope sources: `03-functional-requirements.md`, `04-multi-tenancy-architecture.md`,
   `05-reseller-hierarchy.md`, `06-product-marketplace.md`,
@@ -1227,7 +1227,7 @@ post-MVP unless closed before Phase 3 exit).
   `12-crm-and-support.md`.
 - Execution references: `14-api-specification.md` (endpoints), `15-user-workflows.md`,
   `16-ui-ux-specification.md` (UI IDs), `17-security-requirements.md` (SEC-NNN),
-  `18-non-functional-requirements.md` (NFR-NNN), `19-testing-and-acceptance-criteria.md`
+  `18-non-functional-requirements.md` (NFR-NNN), `19-testing-and-quality-assurance.md`
   (suites), `21-risk-register.md` (RISK-NNN), `22-open-questions-and-assumptions.md`
   (OQ-NNN).
 

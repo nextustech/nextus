@@ -69,7 +69,7 @@ channel mechanics (FR-NOTIFY in `03-functional-requirements.md`), and invoice ge
 This document consumes the `OrderItemPaid` semantic defined in `03`/`07` and never
 redefines payment processing.
 
-Target stack context (charter §3): Laravel 13 / PHP 8.4 monolith, Redis + Horizon queues,
+Target stack context (charter §3): Laravel 12 / PHP 8.2+ monolith, Redis + Horizon queues,
 Laravel Reverb for realtime events, MySQL 8 shared-schema multi-tenancy with `tenant_id`
 row isolation. Fulfillment jobs run on a dedicated Horizon queue `fulfillment`.
 

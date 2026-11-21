@@ -336,7 +336,9 @@ rules specified in `12-crm-and-support.md`. SLA defaults = OQ-034.
    owning tenant with platform tooling to execute erasure where technically required.
 2. **Breach handling:** platform capability to detect, log (`audit_logs`), and produce
    breach notification content for the Data Protection Board and affected principals
-   within statutory timelines; runbook in `20-deployment-and-operations.md`.
+   within statutory timelines; playbook requirements in
+   `17-security-requirements.md` §9 (operational runbook pending — see `index.md`
+   §Filename and Cross-Reference Notes).
 3. **Processing agreements:** tenant onboarding includes DPDP-aligned data-processing
    terms between platform and reseller (document generation = P1.5/P2; signature captured
    at onboarding approval in MVP).
@@ -362,7 +364,8 @@ rules specified in `12-crm-and-support.md`. SLA defaults = OQ-034.
 2. Consequence for product design: no "card on file" raw-card features; tokenized
    saved-payment-method features only if the gateway provides a compliant vault API.
 3. Scope statement and network/data-flow diagram obligations: see
-   `17-security-requirements.md` and `20-deployment-and-operations.md`.
+   `17-security-requirements.md` (diagram deliverable pending — see `index.md`
+   §Filename and Cross-Reference Notes).
 
 ### 5.5 White-label acceptable use & anti-phishing
 
@@ -397,8 +400,8 @@ Controls required for MVP:
 | C1 | India-first: INR default currency, GST tax logic, Razorpay + Cashfree only in MVP. | Charter §1, §10; OQ-004 for multi-currency. |
 | C2 | Single shared MySQL 8 database with `tenant_id` isolation — NOT database-per-tenant; purpose-built lightweight tenancy layer (middleware + global scopes + tenant context container). | Charter §3. |
 | C3 | Modular monolith only; no microservices, Kafka, or extra infrastructure. | Charter §3. |
-| C4 | Current repo is Laravel 12 with Bootstrap/laravel/ui Blade scaffolding; Phase 1 must upgrade to Laravel 13 + PHP 8.4 and replace scaffolding with Vue 3 + Inertia + TypeScript + Tailwind CSS 4. | Charter §2, §3. |
-| C5 | spatie/laravel-permission must move to ^7.0/^8.0 (teams feature, `teams = tenant`). | Charter §3, §5. |
+| C4 | Phase 1 stays on Laravel 12 and PHP 8.2+ with Bootstrap/laravel/ui Blade scaffolding replaced by Vue 3 + Inertia + TypeScript + Tailwind CSS 4. | Owner decision 2026-11-20; Charter §2, §3. |
+| C5 | spatie/laravel-permission must use a Laravel-12-compatible release with teams feature enabled (`teams = tenant`). | Charter §3, §5. |
 | C6 | All payments collected under central merchant accounts; resellers never hold gateway credentials; payouts manual in MVP. | Charter §4, §7.8. |
 | C7 | Double-entry ledger is authoritative; wallet balances derived; amounts `DECIMAL(15,2)` with explicit currency; no floats. | Charter §7.1–7.3, 7.11. |
 | C8 | Webhook and commission idempotency guarantees are hard requirements (M3.2 = 0 defects). | Charter §7.10. |
@@ -414,7 +417,7 @@ Controls required for MVP:
 |---|---|---|---|---|---|
 | Razorpay | Primary payment collection, refunds, settlement reports. | MVP | Finance Admin | Webhook delay/outage; settlement mismatch. | Cashfree as parallel gateway; reconciliation re-query job; manual refund path. |
 | Cashfree | Secondary gateway (redundancy, feature parity). | MVP | Finance Admin | Same as above. | Razorpay-only mode; checkout degrades to one gateway. |
-| Cloudflare | DNS, proxy, edge SSL for custom domains, DDoS floor. | MVP | Platform Admin (Super Admin for zone control) | Zone misconfig breaks tenant domains. | Subdomain-only white-label remains functional; runbook in `20-deployment-and-operations.md`. |
+| Cloudflare | DNS, proxy, edge SSL for custom domains, DDoS floor. | MVP | Platform Admin (Super Admin for zone control) | Zone misconfig breaks tenant domains. | Subdomain-only white-label remains functional; zone/SSL flow in `04-multi-tenancy-architecture.md` §8.2. |
 | S3-compatible storage | Product media, invoices PDFs, tenant assets. | MVP | Platform Admin | Vendor lock-in, cost growth. | Any S3-compatible endpoint; per-tenant prefix strategy (OQ-023). |
 | Transactional email provider | Invoice delivery, notifications, auth mails. | MVP | Platform Admin | Deliverability/domain reputation. | Provider abstraction (SMTP driver swap) — OQ-025. |
 | WhatsApp Cloud API | Transactional WhatsApp notifications. | P1.5 | Platform Admin | Template approval delays; Meta policy rejections (OQ-033). | Email + in-app fallback; feature-flagged per tenant. |
@@ -474,7 +477,7 @@ Local to this document; the authoritative register is
    they are wired to OQ-001, OQ-002, OQ-007, OQ-008, OQ-034, OQ-035, OQ-036.
 2. §5 compliance content is an engineering interpretation of GST/DPDP/Consumer
    Protection requirements and must be validated by qualified Indian counsel before GA;
-   tracked as a launch gate in `21-implementation-roadmap.md`.
+   tracked as a launch gate in `20-development-roadmap.md`.
 3. §2.3 assumes ≥ 10 launch catalog products; supply commitments are not yet contracted.
 4. §4.3 payout batching ("weekly") is a placeholder pending OQ-036 decision.
 5. §4.2 assumes subscription gating of publication entitlements; if the entitlement

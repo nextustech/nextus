@@ -85,5 +85,5 @@
 ## 8. Next actions
 
 1. OQ-022 (option a) and OQ-026 (option a) ratified 2026-11-20 in `22-open-questions-and-assumptions.md` §5; §2/§3 statuses are `Closed`.
-2. Start T1.1 (Laravel 12→13 / PHP 8.4) — tenancy code must not merge before step 1.
+2. Start T1.1 baseline validation (Laravel 12 / PHP 8.2+) — tenancy code must not merge before the baseline exits green.
 3. T1.5 implements §4 above; §5 checklist becomes part of Phase 1 exit evidence.
