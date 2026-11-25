@@ -1,0 +1,38 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('media_libraries', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('tenant_id')->constrained()->cascadeOnDelete();
+            $table->string('name');
+            $table->string('path');
+            $table->string('original_name');
+            $table->string('mime_type');
+            $table->string('size')->default('0');
+            $table->enum('type', ['image', 'document', 'video', 'audio'])->default('image');
+            $table->boolean('is_public')->default(false);
+            $table->timestamps();
+
+            $table->index(['tenant_id', 'type']);
+            $table->index(['tenant_id', 'is_public']);
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('media_libraries');
+    }
+};

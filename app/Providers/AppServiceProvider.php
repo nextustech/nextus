@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Contracts\MediaScanner;
 use App\Tenancy\TenantContext;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
@@ -18,6 +19,10 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->singleton(TenantContext::class, fn () => new TenantContext);
+
+        $this->app->bind(MediaScanner::class, fn ($app) => $app->make(
+            $app['config']->get('catalog.media.scanner', \App\Services\ContentSniffingMediaScanner::class),
+        ));
     }
 
     /**

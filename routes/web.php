@@ -14,6 +14,12 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', function () {
+    $tenant = app(\App\Tenancy\TenantContext::class)->get();
+    abort_if($tenant === null, 404);
+    if (! app(\App\Tenancy\TenantContext::class)->isPlatform()) {
+        return app(\App\Http\Controllers\StorefrontController::class)->home(request());
+    }
+
     return Inertia::render('Welcome', [
         'appName' => config('app.name'),
     ]);
@@ -81,3 +87,5 @@ Route::get('/health/queue', function () {
         ], 503);
     }
 });
+
+require base_path('routes/cms.php');
